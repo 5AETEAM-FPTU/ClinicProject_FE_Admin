@@ -4,7 +4,6 @@ import { Button } from '@nextui-org/react';
 import React from 'react'
 
 function DemoModule() {
-
     const { result, isFetching, refetch } = useGetQuestionsQuery(
         {
             amount: 10,
@@ -19,10 +18,6 @@ function DemoModule() {
             },
         }
     )
-
-    console.log(result);
-
-
     return (
         <div className='w-full h-screen flex-col gap-2 flex justify-center items-center'>
             <h1> DEMO RTK Query to fetching data from an API!</h1>
@@ -37,9 +32,7 @@ function DemoModule() {
                     ))}
                 </div>
             }
-
-            <Button color="default" onClick={() => {refetch()}}>Refetch</Button>
-
+            <Button color="default" onClick={() => { refetch() }}>Refetch</Button>
         </div>
     )
 }

@@ -10,7 +10,6 @@ function DemoModule() {
         },
         {
             selectFromResult({ data, isFetching }) {
-                console.log(data);
                 return {
                     result: data?.results ?? [],
                     isFetching,

@@ -1,6 +1,6 @@
 'use client'
 import { useGetQuestionsQuery } from '@/stores/services/demo'
-import { Button } from '@nextui-org/react';
+import { Button } from 'antd'
 import React from 'react'
 
 function DemoModule() {
@@ -31,7 +31,10 @@ function DemoModule() {
                     ))}
                 </div>
             }
-            <Button color="default" onClick={() => { refetch() }}>Refetch</Button>
+            <Button color='primary' type='primary' onClick={() => refetch()}>
+                Refetch
+            </Button>
+
         </div>
     )
 }

@@ -1,6 +1,6 @@
 'use client'
 import constants from '@/settings/constants'
-import { Button } from '@nextui-org/react'
+import { Button } from 'antd'
 import { setCookie } from 'cookies-next'
 import {useRouter } from 'next/navigation'
 import React from 'react'
@@ -15,8 +15,7 @@ function SignInModule() {
     return (
         <div className='w-full h-screen flex-col gap-2 flex justify-center items-center'>
             THIS IS SIGN IN PAGE
-
-            <Button color='primary' onClick={() => handleSignInFakely()}>SIGN IN</Button>
+            <Button onClick={handleSignInFakely}>SIGN IN</Button>
         </div>
     )
 }

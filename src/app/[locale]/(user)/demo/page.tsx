@@ -1,4 +1,4 @@
-import DemoModule from '@/components/modules/Main/Demo'
+import DemoModule from '@/components/Core/modules/Main/Demo'
 import React from 'react'
 
 function DemoPage() {

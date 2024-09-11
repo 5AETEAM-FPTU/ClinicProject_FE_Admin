@@ -1,4 +1,4 @@
-import SignInModule from '@/components/modules/Auth/SignIn';
+import SignInModule from '@/components/Core/modules/Auth/SignIn';
 
 function SignIn() {
     return (

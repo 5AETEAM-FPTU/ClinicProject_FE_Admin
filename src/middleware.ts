@@ -30,6 +30,7 @@ export function middleware(req: NextRequest) {
   ) {
     const url = new URL(req.url);
     const searchParams = url.searchParams.toString();
+    lng = fallbackLng;
     return NextResponse.redirect(
       new URL(
         `/${lng}${req.nextUrl.pathname}${

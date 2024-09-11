@@ -7,11 +7,11 @@ import React from 'react'
 
 function AuthRootLayout({ children }: { children: React.ReactNode }) {
 
-    const _accessToken = getCookie(constants.ACCESS_TOKEN, {cookies})
+    // const _accessToken = getCookie(constants.ACCESS_TOKEN, {cookies})
 
-    if(_accessToken) {
-        redirect("/");
-    }
+    // if(_accessToken) {
+    //     redirect("/");
+    // }
     
     return (
         <div>

@@ -2,14 +2,14 @@
 import constants from '@/settings/constants'
 import { Button } from 'antd'
 import { setCookie } from 'cookies-next'
-import {useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 function SignInModule() {
     const router = useRouter();
-    const handleSignInFakely =  () => {
-         setCookie(constants.ACCESS_TOKEN, "ANY_TOKENS", {maxAge: 3600, path: "/"});
-         router.push("/");
+    const handleSignInFakely = () => {
+        setCookie(constants.ACCESS_TOKEN, "ANY_TOKENS", { maxAge: 3600, path: "/" });
+        router.push("/");
     }
 
     return (

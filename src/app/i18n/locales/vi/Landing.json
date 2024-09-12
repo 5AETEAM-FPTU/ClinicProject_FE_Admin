@@ -1,5 +1,12 @@
 {
     "header_accounts": "Tài khoản",
     "header_vietnamese": "Tiếng Việt",
-    "header_english": "Tiếng Anh"
+    "header_english": "Tiếng Anh",
+    "header_supports": "Hỗ trợ đặt khám",
+    "header_overview": "Tổng quan",
+    "header_clinic": "Phòng khám",
+    "header_doctor": "Bác sĩ",
+    "header_booking": "Đặt lịch",
+    "header_news": "Tin tức Y tế",
+    "header_contact": "Liên hệ"
 }

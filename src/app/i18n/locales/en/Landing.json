@@ -1,5 +1,12 @@
 {
     "header_accounts": "Account",
     "header_vietnamese": "Vietnamese",
-    "header_english": "English"
+    "header_english": "English",
+    "header_supports": "Support",
+    "header_overview": "Overview",
+    "header_clinic": "Clinic",
+    "header_doctor": "Doctors",
+    "header_booking": "Booking",
+    "header_news": "News",
+    "header_contact": "Contact"
 }

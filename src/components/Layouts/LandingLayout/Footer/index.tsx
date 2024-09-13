@@ -13,6 +13,8 @@ import BoCongThuong from '@public/landing/images/bocongthuong.webp'
 import DaDangKy from '@public/landing/images/dadangky.webp'
 
 import { Irish_Grover } from 'next/font/google'
+import { useParams } from 'next/navigation'
+import { useTranslation } from '@/app/i18n/client'
 
 const irishGrover = Irish_Grover({
     subsets: ['latin'],
@@ -21,7 +23,8 @@ const irishGrover = Irish_Grover({
 })
 
 function Footer() {
-    console.log(irishGrover.style)
+    const params = useParams()
+    const { t } = useTranslation(params?.locale as string, 'Landing')
 
     return (
         <div className="flex h-fit w-full flex-col justify-center">
@@ -44,13 +47,12 @@ function Footer() {
                                     <div className="flex h-full w-[80%] flex-col gap-3 p-[30px]">
                                         <div>
                                             <h1 className="text-[30px] font-bold leading-tight text-white">
-                                                Sức khỏe của bạn là ưu tiên hàng
-                                                đầu của chúng tôi!
+                                                {t('footer_banner_1')}
                                             </h1>
                                         </div>
                                         <div className="flex flex-row items-center gap-5">
                                             <h3 className="text-[20px] font-bold text-white">
-                                                Phương thức liên hệ khác:
+                                                {t('footer_banner_2')}
                                             </h3>
                                             <div className="flex flex-row items-center justify-center overflow-hidden rounded-[12px] bg-white p-[4px]">
                                                 <div className="h-[50px] w-[50px]">
@@ -94,8 +96,7 @@ function Footer() {
                                             </div>
                                             <div className="">
                                                 <h3 className="rounded-xl bg-white px-[20px] py-[12px] text-center text-[16px] font-bold text-secondaryDark">
-                                                    Giảm 15% cho lần khám đầu
-                                                    tiên
+                                                    {t('footer_banner_3')}
                                                 </h3>
                                             </div>
                                         </div>
@@ -128,33 +129,31 @@ function Footer() {
                                     P-CLINIC
                                 </h1>
                                 <p className="max-w-[248px] opacity-65">
-                                    Phòng khám tư nhân chuyên về nội khoa, với
-                                    sứ mệnh mang đến dịch vụ y tế chất lượng cao
-                                    và cá nhân hóa cho mỗi bệnh nhân.
+                                    {t('footer_description')}
                                 </p>
                                 <ul className="flex max-w-[248px] flex-col gap-[10px]">
                                     <li>
-                                        <span className="font-bold">
-                                            Địa chỉ:
+                                        <span className="mr-1 font-bold">
+                                            {t('footer_address')} :
                                         </span>{' '}
                                         236/29/18 Điện Biên Phủ - Phường 17 -
                                         Quận Bình Thạnh - TPHCM
                                     </li>
                                     <li>
-                                        <span className="font-bold">
-                                            Website:
+                                        <span className="mr-1 font-bold">
+                                            {t('footer_website')}:
                                         </span>
                                         pclinic.com.vn
                                     </li>
                                     <li>
-                                        <span className="font-bold">
+                                        <span className="mr-1 font-bold">
                                             Email:
                                         </span>
                                         supports@pclinic.com
                                     </li>
                                     <li>
                                         <span className="font-bold">
-                                            Điện thoại:
+                                            {t('footer_hotline')}
                                         </span>{' '}
                                         (028) 710 78098
                                     </li>
@@ -197,49 +196,134 @@ function Footer() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-[26px]">
-                            <h4 className="font-bold">DỊCH VỤ</h4>
+                            <h4 className="font-bold">
+                                {t('footer_service').toUpperCase()}
+                            </h4>
                             <ul className="flex flex-col gap-3">
-                                <li>Đặt khám tại cơ sở</li>
-                                <li>Đặt khám theo bác sĩ</li>
-                                <li>Tư vấn sức khỏe qua video</li>
-                                <li>Y tế tại nhà</li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_service_1')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_service_2')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_service_3')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_service_4')}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div className="flex flex-col gap-[26px]">
-                            <h4 className="font-bold">TRỢ GIÚP</h4>
+                            <h4 className="font-bold">
+                                {t('footer_supports').toUpperCase()}
+                            </h4>
                             <ul className="flex flex-col gap-3">
-                                <li>Hướng dẫn đặt lịch</li>
-                                <li>Hướng dẫn hệ thống</li>
-                                <li>Quy trình hoàn tiền</li>
-                                <li>Quy trình khám bệnh</li>
-                                <li>Các câu hỏi thường gặp</li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_support_1')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_support_2')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_support_3')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_support_4')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_support_5')}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="flex flex-col gap-[26px]">
+                            <h4 className="font-bold">
+                                {t('footer_FAQ').toUpperCase()}
+                            </h4>
+                            <ul className="flex flex-col gap-3">
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_FAQ_1')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_FAQ_2')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_FAQ_3')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_FAQ_4')}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div className="flex flex-col gap-[26px]">
-                            <h4 className="font-bold">DỊCH VỤ</h4>
+                            <h4 className="font-bold">
+                                {t('footer_coop').toUpperCase()}
+                            </h4>
                             <ul className="flex flex-col gap-3">
-                                <li>Đặt khám tại cơ sở</li>
-                                <li>Đặt khám theo bác sĩ</li>
-                                <li>Tư vấn sức khỏe qua video</li>
-                                <li>Y tế tại nhà</li>
-                            </ul>
-                        </div>
-                        <div className="flex flex-col gap-[26px]">
-                            <h4 className="font-bold">F A Q</h4>
-                            <ul className="flex flex-col gap-3">
-                                <li>Tài khoản</li>
-                                <li>Quản lý</li>
-                                <li>Đặt dịch vụ</li>
-                                <li>Thanh toán</li>
-                            </ul>
-                        </div>
-                        <div className="flex flex-col gap-[26px]">
-                            <h4 className="font-bold">Hợp tác</h4>
-                            <ul className="flex flex-col gap-3">
-                                <li>Liên hệ</li>
-                                <li>Khám sức khỏe chuyên khoa</li>
-                                <li>Hổ trợ tư vấn tuyển dụng</li>
-                                <li>Bài báo y tế</li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_coop_1')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_coop_2')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_coop_3')}
+                                    </a>
+                                </li>
+                                <li>
+                                    {' '}
+                                    <a href="#" className="text-black">
+                                        {t('footer_coop_4')}
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#">
                                         <Image
@@ -268,8 +352,8 @@ function Footer() {
             <div className="flex h-fit w-full justify-center bg-secondaryDark py-4">
                 <div className="flex w-[1440px] max-w-[1440px] items-center justify-center">
                     <p className="text-white">
-                        Bản quyền thuộc về Công ty TNHH 5AE © 2024, All
-                        Rights Reserved
+                        {`${t("liences")}`} © 2024, All Rights
+                        Reserved
                     </p>
                 </div>
             </div>

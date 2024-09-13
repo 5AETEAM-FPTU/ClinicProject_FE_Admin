@@ -8,5 +8,42 @@
     "header_doctor": "Bác sĩ",
     "header_booking": "Đặt lịch",
     "header_news": "Tin tức Y tế",
-    "header_contact": "Liên hệ"
+    "header_contact": "Liên hệ",
+
+    "footer_banner_1": "Sức khỏe của bạn là ưu tiên hàng đầu của chúng tôi!",
+    "footer_banner_2": "Phương thức liên hệ khác",
+    "footer_banner_3": "Giảm 15% cho lần khám đầu tiên",
+
+    "footer_description": "Phòng khám tư nhân chuyên về nội khoa, với sứ mệnh mang đến dịch vụ y tế chất lượng cao và cá nhân hóa cho mỗi bệnh nhân.",
+    "footer_address": "Địa chỉ",
+    "footer_email:" : "Email",
+    "footer_website": "Website",
+    "footer_hotline": "Điện thoại",
+
+    "footer_service": "Dịch vụ",
+    "footer_service_1": "Đặt khám tại chổ",
+    "footer_service_2": "Đặt khám theo bác sĩ",
+    "footer_service_3": "Tư vấn sức khỏe qua video",
+    "footer_service_4": "Y tế tại nhà",
+
+    "footer_supports": "Trợ giúp",
+    "footer_support_1": "Hướng dẫn đặt lịch",
+    "footer_support_2": "Hướng dẫn hệ thống",
+    "footer_support_3": "Hướng dẫn hoàn tiền",
+    "footer_support_4": "Quy trình khám bệnh",
+    "footer_support_5": "Các câu hỏi thường gặp",
+
+    "footer_FAQ": "F A Q",
+    "footer_FAQ_1":"Tài khoản",
+    "footer_FAQ_2": "Quản lý",
+    "footer_FAQ_3": "Dịch vụ khám chữa bệnh",
+    "footer_FAQ_4": "Thanh toán",
+
+    "footer_coop": "Hợp tác", 
+    "footer_coop_1": "Liên hệ",
+    "footer_coop_2": "Khám sức khỏe chuyên khoa",
+    "footer_coop_3": "Tư vấn tuyển dụng",
+    "footer_coop_4": "Bài báo y tế",
+
+    "liences": "Bản quyền thuộc về Công Ty TNHH 5AE"
 }

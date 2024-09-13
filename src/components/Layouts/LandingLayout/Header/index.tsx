@@ -84,7 +84,7 @@ function Header() {
                                 <span className="font-semibold">
                                     {t('header_supports')}
                                 </span>
-                                <span className="text-[20px] font-bold  text-[#FF8058]">
+                                <span className="text-[20px] font-extrabold text-[#FF8058]">
                                     0356611341
                                 </span>
                             </div>

@@ -73,7 +73,7 @@ function Header() {
                         </div>
                     </div>
 
-                    <div>
+                    <div className='w-full flex justify-between'>
                         
                     </div>
                 </div>

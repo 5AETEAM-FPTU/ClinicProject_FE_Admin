@@ -1,5 +1,49 @@
 {
     "header_accounts": "Account",
     "header_vietnamese": "Vietnamese",
-    "header_english": "English"
+    "header_english": "English",
+    "header_supports": "Support",
+    "header_overview": "Overview",
+    "header_clinic": "Clinic",
+    "header_doctor": "Doctors",
+    "header_booking": "Booking",
+    "header_news": "News",
+    "header_contact": "Contact",
+
+    "footer_banner_1": "Your health is our top priority!",
+    "footer_banner_2": "Other contact methods",
+    "footer_banner_3": "15% off for the first consultation",
+
+    "footer_description": "Private clinic specializing in internal medicine, with a mission to provide high-quality and personalized medical services to each patient.",
+    "footer_address": "Address",
+    "footer_email": "Email",
+    "footer_website": "Website",
+    "footer_hotline": "Phone",
+
+    "footer_service": "Services",
+    "footer_service_1": "On-site consultation booking",
+    "footer_service_2": "Doctor appointment booking",
+    "footer_service_3": "Health consultation via video",
+    "footer_service_4": "Home healthcare",
+
+    "footer_supports": "Support",
+    "footer_support_1": "Appointment booking guide",
+    "footer_support_2": "System guide",
+    "footer_support_3": "Refund guide",
+    "footer_support_4": "Consultation process",
+    "footer_support_5": "Frequently asked questions",
+
+    "footer_FAQ": "F A Q",
+    "footer_FAQ_1": "Account",
+    "footer_FAQ_2": "Management",
+    "footer_FAQ_3": "Medical services",
+    "footer_FAQ_4": "Payment",
+
+    "footer_coop": "Cooperation",
+    "footer_coop_1": "Contact",
+    "footer_coop_2": "Specialized health examination",
+    "footer_coop_3": "Recruitment consultation",
+    "footer_coop_4": "Medical articles",
+
+    "liences": "Copyright belongs to 5AE Co., Ltd."
 }

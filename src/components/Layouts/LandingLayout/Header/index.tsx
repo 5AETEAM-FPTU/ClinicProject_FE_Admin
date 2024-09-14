@@ -25,8 +25,6 @@ function Header() {
     const { t } = useTranslation(params?.locale as string, 'Landing')
     const { scrollDir } = useDetectScroll()
 
-    console.log(scrollDir)
-
     const [isInHeader, setIsInHeader] = useState<boolean>(true)
     const handleScroll = useCallback(() => {
         if (window.scrollY > 10) {
@@ -42,8 +40,6 @@ function Header() {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [handleScroll])
-
-    console.log(isInHeader)
 
     return (
         <div className="fixed left-0 top-0 z-[100] flex h-fit w-full justify-center bg-white drop-shadow-lg">

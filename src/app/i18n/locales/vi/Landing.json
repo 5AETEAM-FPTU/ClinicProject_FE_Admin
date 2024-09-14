@@ -16,7 +16,7 @@
 
     "footer_description": "Phòng khám tư nhân chuyên về nội khoa, với sứ mệnh mang đến dịch vụ y tế chất lượng cao và cá nhân hóa cho mỗi bệnh nhân.",
     "footer_address": "Địa chỉ",
-    "footer_email:" : "Email",
+    "footer_email:": "Email",
     "footer_website": "Website",
     "footer_hotline": "Điện thoại",
 
@@ -34,16 +34,28 @@
     "footer_support_5": "Các câu hỏi thường gặp",
 
     "footer_FAQ": "F A Q",
-    "footer_FAQ_1":"Tài khoản",
+    "footer_FAQ_1": "Tài khoản",
     "footer_FAQ_2": "Quản lý",
     "footer_FAQ_3": "Dịch vụ khám chữa bệnh",
     "footer_FAQ_4": "Thanh toán",
 
-    "footer_coop": "Hợp tác", 
+    "footer_coop": "Hợp tác",
     "footer_coop_1": "Liên hệ",
     "footer_coop_2": "Khám sức khỏe chuyên khoa",
     "footer_coop_3": "Tư vấn tuyển dụng",
     "footer_coop_4": "Bài báo y tế",
 
-    "liences": "Bản quyền thuộc về Công Ty TNHH 5AE"
+    "liences": "Bản quyền thuộc về Công Ty TNHH 5AE",
+
+    "banner_platform": "Nền tảng công nghệ",
+    "banner_title": "Phòng khám tư nhân <br /> Chuyên nội khoa P-Clinic ",
+    "banner_contact": "Nhập số điện thoại hoặc email của bạn",
+    "banner_contact_send": "Nhận tư vấn",
+    "banner_subtitle": "Đặt khám nhanh - Tư vấn sức khỏe từ xa - Hỗ trợ 24h",
+    "banner_service_1": "Đặt lịch khám theo bác sĩ",
+    "banner_service_2": "Đặt lịch khám tại cơ sở",
+    "banner_service_3": "Tư vấn sức khỏe qua video",
+    "banner_service_4": "Xét nghiệm nhanh chóng",
+    "banner_service_5": "Y tế tại nhà bệnh nhân",
+    "banner_service_6": "Thanh toán qua hệ thống"
 }

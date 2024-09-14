@@ -11,6 +11,9 @@ import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
 import HeadPhoneIcon from '@public/landing/icons/HeadPhone.svg'
+import { useCallback, useEffect, useState } from 'react'
+import useDetectScroll from '@smakss/react-scroll-direction'
+import { cn } from '@/lib/utils'
 
 const irishGrover = Irish_Grover({
     subsets: ['latin'],
@@ -20,9 +23,30 @@ const irishGrover = Irish_Grover({
 function Header() {
     const params = useParams()
     const { t } = useTranslation(params?.locale as string, 'Landing')
+    const { scrollDir } = useDetectScroll()
+
+    console.log(scrollDir)
+
+    const [isInHeader, setIsInHeader] = useState<boolean>(true)
+    const handleScroll = useCallback(() => {
+        if (window.scrollY > 10) {
+            setIsInHeader(false)
+        } else {
+            setIsInHeader(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [handleScroll])
+
+    console.log(isInHeader)
 
     return (
-        <div className="flex h-fit w-full justify-center shadow-md z-[100]">
+        <div className="fixed left-0 top-0 z-[100] flex h-fit w-full justify-center bg-white drop-shadow-lg">
             <div className="flex w-[1440px] max-w-[1440px] flex-row gap-10 px-[80px]">
                 <div className="flex items-center justify-center">
                     <div className={irishGrover.className}>
@@ -32,8 +56,18 @@ function Header() {
                     </div>
                 </div>
                 <div className="flex w-[calc(100%-195px)] flex-col">
-                    <div className="flex w-full justify-between py-[10px]">
-                        <div className="flex flex-row gap-[18px]">
+                    <div
+                        className={cn(
+                            'flex w-full justify-between py-[10px] duration-300',
+                            `${scrollDir === 'down' ? 'h-0 p-0 duration-300' : ''}`,
+                        )}
+                    >
+                        <div
+                            className={cn(
+                                'flex flex-row gap-[18px] transition-all duration-500',
+                                `${scrollDir === 'down' && 'translate-y-[-50px] duration-500'}`,
+                            )}
+                        >
                             <div className="flex items-center gap-2">
                                 <Image
                                     src={FacebookIcon}
@@ -57,7 +91,12 @@ function Header() {
                                 </span>
                             </div>
                         </div>
-                        <div className="flex flex-row gap-[18px]">
+                        <div
+                            className={cn(
+                                'flex flex-row items-center gap-[18px] transition-all duration-500',
+                                `${scrollDir === 'down' && 'translate-y-[-50px] duration-500'}`,
+                            )}
+                        >
                             <Button
                                 type="default"
                                 className="!border-[2px] !border-secondaryDark !bg-white !font-semibold !text-secondaryDark"
@@ -68,18 +107,15 @@ function Header() {
                                 />
                                 {t('header_accounts')}
                             </Button>
-                            <ChangeLanguages />
+                            <div>
+                                <ChangeLanguages />
+                            </div>
                         </div>
                     </div>
 
                     <div className="flex w-full items-center justify-between border-t-2 py-[10px]">
-                        <div className="flex w-fit flex-row gap-2">
-                            <Image
-                                src={HeadPhoneIcon}
-                                width={32}
-                                height={32}
-                                alt="logo"
-                            />
+                        <div className="flex w-[32px] flex-row gap-2">
+                            <Image src={HeadPhoneIcon} alt="logo" />
                             <div className="flex flex-col items-center">
                                 <span className="font-semibold">
                                     {t('header_supports')}
@@ -104,7 +140,7 @@ function Header() {
                                 </li>
                                 <li>
                                     <a href="#" className="text-black">
-                                        {t('doctor')}
+                                        {t('header_doctor')}
                                     </a>
                                 </li>
                                 <li>

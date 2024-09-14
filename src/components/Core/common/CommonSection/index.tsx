@@ -7,19 +7,16 @@ type TProps = {
     title?: string | null
     subtile?: string | null
     tailCustomStyle?: string 
+    children?: React.ReactNode
 }
 
 function CommonSection({
     title,
     subtile,
-    tailCustomStyle
+    tailCustomStyle,
+    children
 }: TProps) {
-    const gradientDirectionsMap: Record<string, string> = {
-        Top: 'to bottom',
-        Botom: 'to top',
-        Left: 'to right',
-        Right: 'to left',
-    };
+    
     return (
         <div
             className={cn(
@@ -29,6 +26,9 @@ function CommonSection({
           
         >
             <CommonTitle title={title} subtile={subtile} />
+            <div className='mt-[40px]'>
+                {children}
+            </div>
         </div>
     )
 }

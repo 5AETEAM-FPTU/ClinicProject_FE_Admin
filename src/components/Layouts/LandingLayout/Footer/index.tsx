@@ -16,6 +16,8 @@ import { Irish_Grover } from 'next/font/google'
 import { useParams } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 
+import { motion } from 'framer-motion'
+
 const irishGrover = Irish_Grover({
     subsets: ['latin'],
     weight: '400',
@@ -28,7 +30,25 @@ function Footer() {
 
     return (
         <div className="flex h-fit w-full flex-col justify-center">
-            <div className="relative h-[166px] w-full">
+            <motion.div
+                initial={{
+                    y: 10,
+                    opacity: 0,
+                }}
+                whileInView={{
+                    y: 0,
+                    opacity: 1,
+                }}
+                transition={{
+                    type: 'spring',
+                    duration: 1,
+                    delay: 0.35,
+                }}
+                viewport={{
+                    once: true,
+                }}
+                className="relative h-[166px] w-full"
+            >
                 <div className="h-1/2 w-full bg-[#F7FCFE]"></div>
                 <div className="h-1/2 w-full bg-[#D8EBFA]"></div>
                 <div className="absolute left-0 top-0 flex h-full w-full justify-center">
@@ -115,9 +135,27 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="relative flex h-fit w-full justify-center bg-[#D8EBFA] pb-[60px] pt-[40px]">
+            <motion.div
+                initial={{
+                    y: 10,
+                    opacity: 0,
+                }}
+                whileInView={{
+                    y: 0,
+                    opacity: 1,
+                }}
+                transition={{
+                    type: 'spring',
+                    duration: 1,
+                    delay: 0.35,
+                }}
+                viewport={{
+                    once: true,
+                }}
+                className="relative flex h-fit w-full justify-center bg-[#D8EBFA] pb-[60px] pt-[40px]"
+            >
                 <div className="w-[1440px] px-[80px]">
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col gap-[15px]">
@@ -348,12 +386,11 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
             <div className="flex h-fit w-full justify-center bg-secondaryDark py-4">
                 <div className="flex w-[1440px] max-w-[1440px] items-center justify-center">
                     <p className="text-white">
-                        {`${t("liences")}`} © 2024, All Rights
-                        Reserved
+                        {`${t('liences')}`} © 2024, All Rights Reserved
                     </p>
                 </div>
             </div>

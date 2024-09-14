@@ -45,5 +45,17 @@
     "footer_coop_3": "Recruitment consultation",
     "footer_coop_4": "Medical articles",
 
-    "liences": "Copyright belongs to 5AE Co., Ltd."
+    "liences": "Copyright belongs to 5AE Co., Ltd.",
+
+    "banner_platform": "Technology Platform",
+    "banner_title": "Private Clinic Internal <br/> Medicine Specialist P-Clinic",
+    "banner_contact": "Enter your phone number or email",
+    "banner_contact_send": "Consultation",
+    "banner_subtitle": "Quick Appointment - Remote Health Consultation - 24/7 Support",
+    "banner_service_1": "Booking with Doctor",
+    "banner_service_2": "Booking  at Clinic",
+    "banner_service_3": "Video Health Consultation",
+    "banner_service_4": "Quick Rapid Testing",
+    "banner_service_5": "Home Medical Care",
+    "banner_service_6": "System Payment"
 }

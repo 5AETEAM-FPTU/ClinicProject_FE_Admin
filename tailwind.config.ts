@@ -10,6 +10,9 @@ const config: Config = {
     fontFamily:{
       
     },
+    boxShadow: {
+      primary: "4px 8px 30px 0 #b1c4da59;"
+    },
     extend: {
       colors: {
         background: "var(--background)",

@@ -4,6 +4,7 @@ import { Button } from 'antd'
 import React from 'react'
 
 function DemoModule() {
+
     const { result, isFetching, refetch } = useGetQuestionsQuery(
         {
             amount: 10,
@@ -17,6 +18,7 @@ function DemoModule() {
             },
         }
     )
+    
     return (
         <div className='w-full h-screen flex-col gap-2 flex justify-center items-center'>
             <h1> DEMO RTK Query to fetching data from an API!</h1>

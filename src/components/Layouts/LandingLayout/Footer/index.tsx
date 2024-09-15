@@ -1,7 +1,10 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
+import { useParams } from 'next/navigation'
+import { Irish_Grover } from 'next/font/google'
 
+import { useTranslation } from '@/app/i18n/client'
 import ImageFooter from '@public/landing/images/FooterImage.jpg'
 import FemaleDoctor from '@public/landing/images/FemaleDoctor.png'
 import QR from '@public/landing/images/QR.png'
@@ -12,9 +15,6 @@ import InstagramLogo from '@public/landing/images/instagram.png'
 import BoCongThuong from '@public/landing/images/bocongthuong.webp'
 import DaDangKy from '@public/landing/images/dadangky.webp'
 
-import { Irish_Grover } from 'next/font/google'
-import { useParams } from 'next/navigation'
-import { useTranslation } from '@/app/i18n/client'
 
 import { motion } from 'framer-motion'
 

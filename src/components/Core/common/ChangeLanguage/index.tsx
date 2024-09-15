@@ -1,11 +1,11 @@
 import { Dropdown, MenuProps } from 'antd'
 import Image from 'next/image'
 import React, { useTransition } from 'react'
+import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 
 import UKFlag from '@public/landing/flags/USFlag.svg'
 import VietNamFlag from '@public/landing/flags/VietNameseFlag.png'
-import { useParams, usePathname, useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
 import { useTranslation } from '@/app/i18n/client'
 import { getPathname } from '@/utils/getPathname'
 import Arrow from '@public/landing/icons/Arrow.svg'

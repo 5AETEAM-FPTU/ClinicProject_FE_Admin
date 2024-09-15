@@ -6,28 +6,20 @@ import { cn } from '@/lib/utils'
 type TProps = {
     title?: string | null
     subtile?: string | null
-    tailCustomStyle?: string 
+    tailCustomStyle?: string
     children?: React.ReactNode
 }
 
-function CommonSection({
-    title,
-    subtile,
-    tailCustomStyle,
-    children
-}: TProps) {
-    
+function CommonSection({ title, subtile, tailCustomStyle, children }: TProps) {
     return (
-        <div
-            className={cn(
-                'h-fit w-[1440px] max-w-[1440px] px-[80px] py-[60px]',
-                tailCustomStyle
-            )}
-          
-        >
-            <CommonTitle title={title} subtile={subtile} />
-            <div className='mt-[40px]'>
-                {children}
+        <div className={cn("w-full h-fit  flex  py-[60px] justify-center", tailCustomStyle)}>
+            <div
+                className={cn(
+                    'h-fit w-[1440px] max-w-[1440px] px-[80px]',
+                )}
+            >
+                <CommonTitle title={title} subtile={subtile} />
+                <div className="mt-[40px]">{children}</div>
             </div>
         </div>
     )

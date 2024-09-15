@@ -11,7 +11,8 @@ const config: Config = {
       
     },
     boxShadow: {
-      primary: "4px 8px 30px 0 #b1c4da59;"
+      primary: "4px 8px 30px 0 #b1c4da59",
+      secondary: " 0px 2px 8px 0px",
     },
     extend: {
       colors: {

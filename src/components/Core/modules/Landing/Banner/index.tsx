@@ -18,6 +18,8 @@ import BannerImage6 from '@public/landing/images/img6.webp'
 import { useParams } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 
+import {motion} from 'framer-motion';
+
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 function Banner() {

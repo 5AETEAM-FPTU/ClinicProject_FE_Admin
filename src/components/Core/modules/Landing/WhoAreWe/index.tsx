@@ -1,12 +1,12 @@
 'use client'
-import { useTranslation } from '@/app/i18n/client'
-import CommonSection from '@/components/Core/common/CommonSection'
-import { useParams } from 'next/navigation'
 import React from 'react'
-
-import DoctorTeam from '@public/landing/images/group-doctors-hospital.png'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useParams } from 'next/navigation'
+import { useTranslation } from '@/app/i18n/client'
+import Image from 'next/image'
+
+import CommonSection from '@/components/Core/common/CommonSection'
+import DoctorTeam from '@public/landing/images/group-doctors-hospital.png'
 
 const html = {
     inner: '<p><span style="color: rgb(44,130,201);font-size: 24px;"><strong>P-Clinic</strong></span><span style="font-size: 24px;"><strong> </strong></span>là phòng khám tư nhân chuyên về nội khoa, với sứ mệnh mang đến dịch vụ y tế chất lượng cao và cá nhân hóa cho mỗi bệnh nhân. Đội ngũ bác sĩ giàu kinh nghiệm của chúng tôi luôn tận tâm, chuyên nghiệp trong việc chẩn đoán và điều trị các bệnh lý nội khoa, từ những bệnh thường gặp đến những tình trạng phức tạp hơn.<br></p>\n<p><br/>Chúng tôi không chỉ cung cấp dịch vụ khám trực tiếp mà còn hỗ trợ tư vấn trực tuyến, đặt lịch khám dễ dàng và giao thuốc tận nhà, giúp bạn tiếp cận y tế nhanh chóng, thuận tiện. Với P-Clinic sức khỏe của bạn luôn được chăm sóc một cách toàn diện và bền vững.</p>\n<p><br><span style="color: rgb(84,172,210);"><strong>Sức khỏe của bạn là ưu tiên hàng đầu của chúng tôi!</strong></span></p>',

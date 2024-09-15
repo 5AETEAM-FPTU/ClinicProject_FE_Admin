@@ -1,22 +1,20 @@
 'use client'
-import CommonSection from '@/components/Core/common/CommonSection'
 import Image from 'next/image'
 import React from 'react'
-import BannerImage from '@public/landing/images/banner.webp'
 
 import { Montserrat } from 'next/font/google'
-import HeaderIcon from '@public/landing/icons/heartbeat.svg'
-import EmailBulk from '@public/landing/icons/mail-bulk.svg'
 import { SendHorizontal } from 'lucide-react'
+import { useParams } from 'next/navigation'
+import { useTranslation } from '@/app/i18n/client'
 
+import BannerImage from '@public/landing/images/banner.webp'
+import EmailBulk from '@public/landing/icons/mail-bulk.svg'
 import BannerImage1 from '@public/landing/images/img1.webp'
 import BannerImage2 from '@public/landing/images/img2.webp'
 import BannerImage3 from '@public/landing/images/img3.webp'
 import BannerImage4 from '@public/landing/images/img4.webp'
 import BannerImage5 from '@public/landing/images/img5.webp'
 import BannerImage6 from '@public/landing/images/img6.webp'
-import { useParams } from 'next/navigation'
-import { useTranslation } from '@/app/i18n/client'
 
 import {motion} from 'framer-motion';
 

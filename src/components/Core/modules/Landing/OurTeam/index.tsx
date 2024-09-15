@@ -1,18 +1,18 @@
 'use client'
-import CommonSection from '@/components/Core/common/CommonSection'
 import React from 'react'
 import Slider from 'react-slick'
+import Image from 'next/image'
 import { Settings } from 'react-slick'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+import CommonSection from '@/components/Core/common/CommonSection'
 import Doctor from '@public/landing/images/doctor.png'
-import Image from 'next/image'
 import StarIcon from '@public/landing/icons/StartIcon'
 import Hospital from '@public/landing/icons/hospital.svg'
 import Dollar from '@public/landing/icons/dollar.svg'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { motion } from 'framer-motion'
 

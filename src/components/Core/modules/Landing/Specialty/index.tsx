@@ -1,6 +1,7 @@
 'use client'
 import CommonSection from '@/components/Core/common/CommonSection'
 import React from 'react'
+import Image from 'next/image';
 
 import { motion } from 'framer-motion'
 
@@ -14,7 +15,6 @@ import NoiTietNieu from '@public/landing/specialty/NoiTietNieu.png';
 import NoiTimMach from '@public/landing/specialty/NoiTimMach.png';
 import NoiTongQuat from '@public/landing/specialty/NoiTongQuat.png';
 import NoiTruyenNhiem from '@public/landing/specialty/NoiTruyenNhiem.png';
-import Image from 'next/image';
 
 function Specialty() {
     return (

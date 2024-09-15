@@ -109,7 +109,9 @@ function Header() {
                         </div>
                     </div>
 
-                    <div className="flex w-full items-center justify-between border-t-2 py-[10px]">
+                    <div className={cn("flex w-full items-center justify-between border-t-2 py-[10px]", `
+                        ${scrollDir === 'down' && 'border-t-0'}
+                        `)}>
                         <div className="flex w-[32px] flex-row gap-2">
                             <Image src={HeadPhoneIcon} alt="logo" />
                             <div className="flex flex-col items-center">

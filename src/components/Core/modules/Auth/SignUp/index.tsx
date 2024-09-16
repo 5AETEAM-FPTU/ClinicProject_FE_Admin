@@ -3,16 +3,21 @@
 // import { setCookie } from 'cookies-next'
 // import { useRouter } from 'next/navigation'
 // import React from 'react'
-import { Button, Input, ConfigProvider } from 'antd'
+import { Button, Input, ConfigProvider, Form } from 'antd'
 import { ArrowLeft } from "lucide-react"
 import { useParams } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'antd/es/form/Form'
 
 export default function SignUpComponent() {
     const params = useParams();
+    const [form] = useForm();
     const { t } = useTranslation(params?.locale as string, 'Landing')
     const router = useRouter();
+    const handleSubmit = (values: any) => {
+
+    }
     return (
         <div className="w-full lg:w-1/2 p-8">
             <ConfigProvider wave={{ disabled: true }}>
@@ -26,14 +31,113 @@ export default function SignUpComponent() {
                         <span className="text-4xl font-bold text-blue-500">P-CLINIC</span>
                     </div>
                     <p className="mb-6 text-lg text-gray-700 text-center">Vui lòng nhập email hoặc số điện thoại và mật khẩu</p>
-                    <form className="space-y-4">
-                        <Input placeholder="Họ và tên" />
-                        <Input type="email" placeholder="Email" />
-                        <Input placeholder="Số điện thoại (không bắt buộc)" />
-                        <Input type="password" placeholder="Mật khẩu" />
-                        <Input type="password" placeholder="Nhập lại mật khẩu" />
-                        <Button size='large' className="w-full bg-blue-500 text-white hover:bg-blue-600">Đăng ký</Button>
-                    </form>
+                    <Form className="space-y-4" form={form} onFinish={handleSubmit}>
+                        <Form.Item
+                            className='mb-12'
+                            validateDebounce={500}
+                            name="password"
+                            rules={[
+                                { required: true, message: "Vui lòng nhập họ và tên" },
+                            ]}
+                        >
+                            <Input type="text" placeholder="Họ và tên" />
+                        </Form.Item>
+                        <Form.Item
+                            name="email"
+                            validateTrigger="onBlur"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Vui lòng nhập email"
+                                },
+                                {
+                                    validator(_, value) {
+                                        if (!value) {
+                                            return Promise.resolve(); // If empty, handled by 'required'
+                                        }
+
+                                        // Email regex
+                                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                                        if (emailRegex.test(value)) {
+                                            return Promise.resolve();
+                                        }
+
+                                        return Promise.reject(new Error('Vui lòng nhập email hợp lệ'));
+                                    }
+                                }
+                            ]}
+                        >
+                            <Input placeholder="Email hoặc số điện thoại" />
+                        </Form.Item>
+                        <Form.Item
+                            name="phone"
+                            validateTrigger="onBlur"
+                            rules={[
+                                // {
+                                //     required: true,
+                                //     message: "Vui lòng nhập số điện thoại"
+                                // },
+                                {
+                                    validator(_, value) {
+                                        if (!value) {
+                                            return Promise.resolve(); // If empty, handled by 'required'
+                                        }
+
+                                        // Vietnamese phone number regex (starts with +84 or 0 and has 9 or 10 digits)
+                                        const phoneRegex = /^(?:\+84|0)(?:3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5]|9[0-9])[0-9]{7}$/;
+
+                                        if (phoneRegex.test(value)) {
+                                            return Promise.resolve();
+                                        }
+
+                                        return Promise.reject(new Error('Vui lòng nhập số điện thoại hợp lệ'));
+                                    }
+                                }
+                            ]}
+                        >
+                            <Input placeholder="Số điện thoại" />
+                        </Form.Item>
+                        <Form.Item
+                            className='mb-12'
+                            hasFeedback
+                            validateDebounce={500}
+                            name="password"
+                            rules={[
+                                { required: true, message: "Vui lòng nhập mật khẩu" },
+                                {
+                                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                                    message: "Mật khẩu phải chứa ít nhất 8 ký tự, chữ cái viết hoa, chữ cái viết thường và ít nhất 1 chữ số"
+                                }
+                            ]}
+                        >
+                            <Input type="password" placeholder="Mật khẩu" />
+                        </Form.Item>
+                        <Form.Item
+                            hasFeedback
+                            validateDebounce={500}
+                            name="confirmPassword"
+                            dependencies={['password']}
+                            rules={[
+                                { required: true, message: "Vui lòng nhập lại mật khẩu" },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || getFieldValue('password') === value) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('Mật khẩu không khớp'));
+                                    },
+                                }),
+                            ]}
+                        >
+                            <Input type="password" placeholder="Nhập lại mật khẩu" />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button size='large' className="w-full bg-blue-500 text-white hover:bg-blue-600" htmlType="submit">
+                                Đăng ký
+                            </Button>
+                        </Form.Item>
+                    </Form>
                     <p className="mt-6 text-center text-sm text-gray-600">Hoặc đăng nhập bằng tài khoản</p>
                     <Button size='large' className="mt-4 w-full bg-red-500 text-white hover:bg-red-600">
                         <svg

@@ -9,14 +9,14 @@ import { useParams } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
 
-export default function SignInComponent() {
+export default function SignUpComponent() {
     const params = useParams();
     const { t } = useTranslation(params?.locale as string, 'Landing')
     const router = useRouter();
     return (
         <div className="w-full lg:w-1/2 p-8">
             <ConfigProvider wave={{ disabled: true }}>
-                <Button className="m-8 p-0 border-none" onClick={() => router.push('/home')}>
+                <Button className="m-8 p-0 border-none" onClick={() => router.back()}>
                     <ArrowLeft className="h-4 w-4" />
                 </Button>
             </ConfigProvider>
@@ -27,11 +27,13 @@ export default function SignInComponent() {
                     </div>
                     <p className="mb-6 text-lg text-gray-700 text-center">Vui lòng nhập email hoặc số điện thoại và mật khẩu</p>
                     <form className="space-y-4">
-                        <Input placeholder="Email hoặc số điện thoại" />
+                        <Input placeholder="Họ và tên" />
+                        <Input type="email" placeholder="Email" />
+                        <Input placeholder="Số điện thoại (không bắt buộc)" />
                         <Input type="password" placeholder="Mật khẩu" />
-                        <Button size='large' className="w-full bg-[#1DA1F2] !important text-white hover:bg-blue-600">Đăng nhập</Button>
+                        <Input type="password" placeholder="Nhập lại mật khẩu" />
+                        <Button size='large' className="w-full bg-blue-500 text-white hover:bg-blue-600">Đăng ký</Button>
                     </form>
-                    <p className="mt-4 text-right text-sm text-blue-500 cursor-pointer" onClick={() => router.push('sign-up')}>Bạn chưa có tài khoản ?</p>
                     <p className="mt-6 text-center text-sm text-gray-600">Hoặc đăng nhập bằng tài khoản</p>
                     <Button size='large' className="mt-4 w-full bg-red-500 text-white hover:bg-red-600">
                         <svg
@@ -49,6 +51,6 @@ export default function SignInComponent() {
                     </Button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

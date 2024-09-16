@@ -46,23 +46,8 @@ function MedicalNews() {
         },
     ]
     return (
-        <motion.div
-            initial={{
-                y: 10,
-                opacity: 0,
-            }}
-            whileInView={{
-                y: 0,
-                opacity: 1,
-            }}
-            transition={{
-                type: 'spring',
-                duration: 1,
-                delay: 0.45,
-            }}
-            viewport={{
-                once: true,
-            }}
+        <div
+           
         >
             <CommonSection
                 title={'Tin tức y tế'}
@@ -154,7 +139,7 @@ function MedicalNews() {
                     </div>
                 </div>
             </CommonSection>
-        </motion.div>
+        </div>
     )
 }
 

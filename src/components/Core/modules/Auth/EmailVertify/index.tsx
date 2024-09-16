@@ -18,14 +18,16 @@ export default function EmailVertify() {
     return (
         <div className="w-full lg:w-1/2 p-8 flex justify-center items-center">
             <div className="mb-8 flex justify-center items-center">
-                {/* <VertifyEmailRequest email="abcdef123@gmail.com" /> */}
-                <VertifyEmailSuccess />
+                <VertifyEmailRequest email="abcdef123@gmail.com" />
+                {/* <VertifyEmailSuccess /> */}
             </div>
         </div >
     )
 }
 
 export function VertifyEmailRequest({ email }: { email: string }) {
+    const params = useParams();
+    const { t } = useTranslation(params?.locale as string, 'Landing')
     return (
         <div className="w-full max-w-md">
             <div className="mb-12 flex justify-center items-center">
@@ -35,8 +37,8 @@ export function VertifyEmailRequest({ email }: { email: string }) {
                 <Image src={RequestEmail} alt="Request email" />
             </div>
             <h2 className="mb-1 text-2xl font-semibold text-center">Xác thực email của bạn</h2>
-            <p className="mb-8 text-gray-600 text-center">
-                Bạn đã gửi đường link xác thực đến <strong>{email}</strong> để kích hoạt tài khoản
+            <p className="mb-8 text-gray-600 text-center" dangerouslySetInnerHTML={{ __html: t('request_email_description', { email }) }}>
+
             </p>
             <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">Gửi lại</Button>
         </div>

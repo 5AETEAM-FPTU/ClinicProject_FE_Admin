@@ -57,5 +57,7 @@
     "banner_service_3": "Tư vấn sức khỏe qua video",
     "banner_service_4": "Xét nghiệm nhanh chóng",
     "banner_service_5": "Y tế tại nhà bệnh nhân",
-    "banner_service_6": "Thanh toán qua hệ thống"
+    "banner_service_6": "Thanh toán qua hệ thống",
+
+    "request_email_description": "Bạn đã gửi đường link xác thực đến <strong>{{email}}</strong> để kích hoạt tài khoản"
 }

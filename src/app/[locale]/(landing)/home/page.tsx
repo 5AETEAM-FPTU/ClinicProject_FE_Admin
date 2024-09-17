@@ -5,6 +5,7 @@ import CustomerFeedback from '@/components/Core/modules/Landing/CustomerFeedback
 import OurTeam from '@/components/Core/modules/Landing/OurTeam'
 import Specialty from '@/components/Core/modules/Landing/Specialty'
 import WhoAreWe from '@/components/Core/modules/Landing/WhoAreWe'
+import MedicalNews from '@/components/Core/modules/Landing/MedicalNews'
 
 function LandingHome() {
     return (
@@ -14,6 +15,7 @@ function LandingHome() {
             <OurTeam/>
             <Specialty/>
             <CustomerFeedback/>
+            <MedicalNews/>
         </div>
     )
 }

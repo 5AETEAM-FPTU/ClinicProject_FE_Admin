@@ -8,10 +8,11 @@ import { ArrowLeft } from "lucide-react"
 import { useParams } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'antd/es/form/Form'
 
-export default function SignInComponent() {
+export default function SignUpComponent() {
     const params = useParams();
-    const [form] = Form.useForm();
+    const [form] = useForm();
     const { t } = useTranslation(params?.locale as string, 'Landing')
     const router = useRouter();
     const handleSubmit = (values: any) => {
@@ -20,7 +21,7 @@ export default function SignInComponent() {
     return (
         <div className="w-full lg:w-1/2 p-8">
             <ConfigProvider wave={{ disabled: true }}>
-                <Button className="m-8 p-0 border-none" onClick={() => router.push('/home')}>
+                <Button className="m-8 p-0 border-none" onClick={() => router.back()}>
                     <ArrowLeft className="h-4 w-4" />
                 </Button>
             </ConfigProvider>
@@ -32,12 +33,22 @@ export default function SignInComponent() {
                     <p className="mb-6 text-lg text-gray-700 text-center">Vui lòng nhập email hoặc số điện thoại và mật khẩu</p>
                     <Form className="space-y-4" form={form} onFinish={handleSubmit}>
                         <Form.Item
-                            name="emailOrPhone"
+                            className='mb-12'
+                            validateDebounce={500}
+                            name="password"
+                            rules={[
+                                { required: true, message: "Vui lòng nhập họ và tên" },
+                            ]}
+                        >
+                            <Input type="text" placeholder="Họ và tên" />
+                        </Form.Item>
+                        <Form.Item
+                            name="email"
                             validateTrigger="onBlur"
                             rules={[
                                 {
                                     required: true,
-                                    message: "Vui lòng nhập email hoặc số điện thoại"
+                                    message: "Vui lòng nhập email"
                                 },
                                 {
                                     validator(_, value) {
@@ -48,19 +59,44 @@ export default function SignInComponent() {
                                         // Email regex
                                         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                                        // Vietnamese phone number regex (starts with +84 or 0 and has 9 or 10 digits)
-                                        const phoneRegex = /^(?:\+84|0)(?:3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5]|9[0-9])[0-9]{7}$/;
-
-                                        if (emailRegex.test(value) || phoneRegex.test(value)) {
+                                        if (emailRegex.test(value)) {
                                             return Promise.resolve();
                                         }
 
-                                        return Promise.reject(new Error('Vui lòng nhập email hoặc số điện thoại hợp lệ'));
+                                        return Promise.reject(new Error('Vui lòng nhập email hợp lệ'));
                                     }
                                 }
                             ]}
                         >
                             <Input placeholder="Email hoặc số điện thoại" />
+                        </Form.Item>
+                        <Form.Item
+                            name="phone"
+                            validateTrigger="onBlur"
+                            rules={[
+                                // {
+                                //     required: true,
+                                //     message: "Vui lòng nhập số điện thoại"
+                                // },
+                                {
+                                    validator(_, value) {
+                                        if (!value) {
+                                            return Promise.resolve(); // If empty, handled by 'required'
+                                        }
+
+                                        // Vietnamese phone number regex (starts with +84 or 0 and has 9 or 10 digits)
+                                        const phoneRegex = /^(?:\+84|0)(?:3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5]|9[0-9])[0-9]{7}$/;
+
+                                        if (phoneRegex.test(value)) {
+                                            return Promise.resolve();
+                                        }
+
+                                        return Promise.reject(new Error('Vui lòng nhập số điện thoại hợp lệ'));
+                                    }
+                                }
+                            ]}
+                        >
+                            <Input placeholder="Số điện thoại" />
                         </Form.Item>
                         <Form.Item
                             className='mb-12'
@@ -77,13 +113,31 @@ export default function SignInComponent() {
                         >
                             <Input type="password" placeholder="Mật khẩu" />
                         </Form.Item>
+                        <Form.Item
+                            hasFeedback
+                            validateDebounce={500}
+                            name="confirmPassword"
+                            dependencies={['password']}
+                            rules={[
+                                { required: true, message: "Vui lòng nhập lại mật khẩu" },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || getFieldValue('password') === value) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('Mật khẩu không khớp'));
+                                    },
+                                }),
+                            ]}
+                        >
+                            <Input type="password" placeholder="Nhập lại mật khẩu" />
+                        </Form.Item>
                         <Form.Item>
                             <Button size='large' className="w-full bg-blue-500 text-white hover:bg-blue-600" htmlType="submit">
-                                Đăng nhập
+                                Đăng ký
                             </Button>
                         </Form.Item>
                     </Form>
-                    <p className="mt-4 text-right text-sm text-blue-500 cursor-pointer" onClick={() => router.push('sign-up')}>Bạn chưa có tài khoản ?</p>
                     <p className="mt-6 text-center text-sm text-gray-600">Hoặc đăng nhập bằng tài khoản</p>
                     <Button size='large' className="mt-4 w-full bg-red-500 text-white hover:bg-red-600">
                         <svg
@@ -101,6 +155,6 @@ export default function SignInComponent() {
                     </Button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

@@ -305,7 +305,7 @@ function Contact() {
                                     </Row>
                                 </div>
                                 <Form.Item className='!mb-0'>
-                                    <Button htmlType="submit" type="primary">
+                                    <Button htmlType="submit" type="primary" onClick={log}>
                                         Xác nhận gửi
                                     </Button>
                                 </Form.Item>

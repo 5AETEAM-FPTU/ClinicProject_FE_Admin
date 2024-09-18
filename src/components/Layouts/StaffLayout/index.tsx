@@ -1,11 +1,11 @@
 'use client'
+import { sidebarStaffData } from '@/helpers/data/SidebarStaffData'
 import React from 'react'
 import DashboardLayout from '../DashbardLayout'
-import { sidebarDoctorData } from '@/helpers/data/SidebarDoctorData'
 
 function StaffLayout({children}: {children: React.ReactNode}) {
     return (
-        <DashboardLayout sidebarItems={sidebarDoctorData}>
+        <DashboardLayout sidebarItems={sidebarStaffData}>
             {children}
         </DashboardLayout>
     )

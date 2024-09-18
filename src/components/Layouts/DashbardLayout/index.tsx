@@ -32,8 +32,6 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
 
     const [appLayoutState, setAppPathLayoutState] =
         useState<TAppPathLayoutState | null>(null)
-    const router = useRouter()
-    const param = useSearchParams()
     const pathname = usePathname()
 
     const handlePathSegments = () => {
@@ -142,7 +140,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex flex-row items-center gap-[200px]">
+                        <div className="flex flex-row items-center gap-[100px]">
                             {' '}
                             <div>
                                 <Input
@@ -152,13 +150,13 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                                             className="mr-3 text-secondaryDarker"
                                         />
                                     }
-                                    className="!w-[380px] !rounded-xl"
+                                    className="!w-[280px] !rounded-xl"
                                     placeholder="Tìm kiếm"
                                     size="middle"
                                 ></Input>
                             </div>
                             <div className="flex flex-row items-center gap-5">
-                                <div className='cursor-pointer" relative p-[10px] hover:bg-slate-200 bg-slate-100 rounded-lg transition-all duration-300'>
+                                <div className='cursor-pointer relative p-[10px] hover:bg-slate-200 bg-slate-100 rounded-lg transition-all duration-300'>
                                     <Bell size={24} />
                                     <div className="absolute right-[-5px] top-[-5px] flex h-[18px] w-[18px] flex-row items-center justify-center rounded-full bg-red-600">
                                         <p className="text-[10px] text-white">

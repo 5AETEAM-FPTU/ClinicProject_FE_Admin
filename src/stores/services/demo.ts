@@ -16,7 +16,7 @@ export const demoApi = baseApi.injectEndpoints({
         }),
 
         //todo mutation instead of query for some solution using endpoint with method POST PATCH, DELETE etc. 
-        //todo more info https://redux-toolkit.js.org/rtk-query/usage/mutations
+        //todo more info https://redux-toolkit.js.org/rtk-query/usage/mutations 
     }), 
 })
 

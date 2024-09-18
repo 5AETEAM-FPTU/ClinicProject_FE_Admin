@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-toolkit'
 import { toggleSidebar } from '@/stores/features/sidebar'
 import { Bell, Home, Logs, Search, Settings } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Footer } from 'antd/es/layout/layout'
 
 const { Header, Sider, Content } = Layout
 const irishGrover = Irish_Grover({
@@ -188,14 +189,19 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                     </div>
                 </Header>
                 <Content
-                    className="bg-dashboardBackgournd !p-0"
+                    className="bg-dashboardBackgournd !p-[20px] !pb-0 overflow-y-auto"
                     style={{
-                        margin: '20px 20px',
+                        margin: '20px 0px 0px 20px',
                         padding: 24,
                         minHeight: 280,
                     }}
                 >
                     {children}
+                    <Footer className='bg-[#F8F9FB] !p-0'>
+                        <div className='w-full p-5 flex flex-row gap-5'>
+                            <p>© Bản quyền thuộc về Team 5AE © 2024, All Rights Reserved ❤️</p>
+                        </div>
+                    </Footer>
                 </Content>
             </Layout>
         </Layout>

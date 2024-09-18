@@ -2,7 +2,7 @@ import React from 'react'
 
 function UserOverview() {
     return (
-        <div>
+        <div className=''>
             This is user overview
         </div>
     )

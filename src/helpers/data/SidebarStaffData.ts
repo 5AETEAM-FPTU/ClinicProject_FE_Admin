@@ -39,7 +39,7 @@ export const sidebarStaffData: IndividualMenuItemType[] = [
         icon: React.createElement(BriefcaseMedical),
         childrens: [
             {
-                key: 'all',
+                key: 'all-doctors',
                 lable: 'Tất cả',
             },
             {
@@ -62,7 +62,7 @@ export const sidebarStaffData: IndividualMenuItemType[] = [
         icon: React.createElement(UserSearch),
         childrens: [
             {
-                key: 'all',
+                key: 'all-patients',
                 lable: 'Tất cả',
             },
             {

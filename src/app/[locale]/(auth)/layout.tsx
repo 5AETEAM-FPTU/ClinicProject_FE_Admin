@@ -8,27 +8,17 @@ import AuthBanner from '@public/landing/images/auth-banner.png'
 
 function AuthRootLayout({ children }: { children: React.ReactNode }) {
 
-    const _accessToken = getCookie(constants.ACCESS_TOKEN, {cookies})
+    const _accessToken = getCookie(constants.ACCESS_TOKEN, { cookies })
 
-    if(_accessToken) {
+    if (_accessToken) {
         redirect("/dashboard/overview");
     }
 
     return (
-        <div className="min-h-screen bg-white flex">
+        <div className="flex justify-center items-center !h-screen">
             {children}
-            <div className="hidden lg:flex lg:w-1/2 bg-gray-100 items-center justify-center">
-                <div className="relative h-full w-full">
-                    <Image
-                        src={AuthBanner}
-                        alt="Woman using smartphone"
-                        width={1440}
-                        height={1440}
-                        className='object-cover'
-                    />
-                </div>
-            </div>
-        </div>);
+        </div>
+    );
 }
 
 export default AuthRootLayout

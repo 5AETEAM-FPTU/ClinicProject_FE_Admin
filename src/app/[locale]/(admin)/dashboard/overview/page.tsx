@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Profile() {
+function Overview() {
     return (
         <div>
-            User PRofile
+            Overview dashboard
         </div>
     )
 }
 
-export default Profile
+export default Overview

@@ -5,5 +5,5 @@ export default function RootPage({
 }: {
   params: { locale: string };
 }) {
-  redirect(`/${locale}/home`);
+  redirect(`/${locale}/dashboard/overview`);
 }

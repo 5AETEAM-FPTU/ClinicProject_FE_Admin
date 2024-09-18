@@ -3,7 +3,7 @@ import React from 'react'
 import DashboardLayout from '../DashbardLayout'
 import { sidebarPatientData } from '@/helpers/data/SidebarPatientData'
 
-function UserLayout({children}: {children: React.ReactNode}) {
+function AdminLayout({children}: {children: React.ReactNode}) {
     return (
         <DashboardLayout sidebarItems={sidebarPatientData}>
             {children}
@@ -11,4 +11,4 @@ function UserLayout({children}: {children: React.ReactNode}) {
     )
 }
 
-export default UserLayout
+export default AdminLayout

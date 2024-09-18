@@ -14,6 +14,7 @@ import { toggleSidebar } from '@/stores/features/sidebar'
 import { Bell, Home, Logs, Search, Settings } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Footer } from 'antd/es/layout/layout'
+import { useRequestLogoutMutation } from '@/stores/services/auth'
 
 const { Header, Sider, Content } = Layout
 const irishGrover = Irish_Grover({
@@ -44,6 +45,17 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
         }
 
         setAppPathLayoutState(newAppLayoutState)
+    }
+
+    const [requestLogout] = useRequestLogoutMutation()
+    const router = useRouter()
+    const handleLogout = async () => {
+        const result = await requestLogout();
+        if (result.error) {
+            console.log('error');
+        } else {
+            router.replace('/sign-in')
+        }
     }
     useEffect(() => {
         return handlePathSegments()
@@ -181,7 +193,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                                         className="h-full w-full object-cover"
                                     ></Image>
                                 </div>
-                                <div className="text-secondarySupperDarker cursor-pointer text-[16px] font-semibold">
+                                <div onClick={handleLogout} className="text-secondarySupperDarker cursor-pointer text-[16px] font-semibold">
                                     Đăng xuất
                                 </div>
                             </div>

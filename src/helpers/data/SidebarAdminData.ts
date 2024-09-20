@@ -8,24 +8,24 @@ import {
 } from 'lucide-react'
 import React from 'react'
 
-export const sidebarDoctorData: IndividualMenuItemType[] = [
+export const sidebarAdminData: IndividualMenuItemType[] = [
     {
         key: 'overview',
         title: 'Tổng quan',
         icon: React.createElement(Home),
     },
     {
-        key: 'treatment-turn',
-        title: 'Lượt khám',
+        key: 'user',
+        title: 'Người dùng',
         icon: React.createElement(CalendarHeart),
         childrens: [
             {
-                key: 'treatment-onday',
-                lable: 'Trong ngày',
+                key: 'doctors',
+                lable: 'Bác sĩ',
             },
             {
-                key: 'treatment-history',
-                lable: 'Kết quả khám',
+                key: 'create-user',
+                lable: 'Tạo mới người dùng',
             },
             {
                 key: 'treatment-cancel',

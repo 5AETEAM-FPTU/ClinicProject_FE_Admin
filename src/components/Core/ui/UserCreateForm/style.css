@@ -1,0 +1,25 @@
+.ant-select-selector {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 51.14px !important;
+    box-sizing: border-box !important;
+}
+
+.ant-select-selection-item {
+    color: #003553;
+    font-size: 16px !important;
+    font-weight: inherit !important;
+    opacity: 60%;
+}
+
+.ant-picker-input input {
+    color: #003553 !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    opacity: 60%;
+}
+
+.custom-shadow {
+    box-shadow: #00355310 0px 1px 3px 0px, #00355360 0px 1px 2px 0px;
+}

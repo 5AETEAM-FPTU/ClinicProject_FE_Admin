@@ -5,6 +5,7 @@ import { baseApi } from './services/base'
 import auth from './features/auth'
 import sidebar from './features/sidebar'
 import { authApis } from './services/auth'
+import loading from './features/loading'
 
 export const createStore = (
     option?: ConfigureStoreOptions['preloadedState'] | undefined,
@@ -15,6 +16,7 @@ export const createStore = (
             [authApis.reducerPath]: authApis.reducer,
             auth,
             sidebar,
+            loading,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(baseApi.middleware),

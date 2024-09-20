@@ -9,6 +9,8 @@ import { ThemeProvider } from 'styled-components';
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { themes } from '@/style/themes';
 import { App, ConfigProvider } from "antd";
+import UserProvider from '@/lib/userProvider';
+import AuthProvider from '@/app/[locale]/(admin)/dashboard/authProvider';
 
 function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -48,7 +50,7 @@ function Providers({ children }: { children: React.ReactNode }) {
                             }
                         >
                             <App>
-                                <Provider store={store}> {children}</Provider>
+                                <Provider store={store}><AuthProvider><UserProvider>{children}</UserProvider></AuthProvider></Provider>
                             </App>
                         </ConfigProvider>
                     </AntdRegistry>

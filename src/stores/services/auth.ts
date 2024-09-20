@@ -1,4 +1,5 @@
 'use client'
+import { request } from "http";
 import { baseApi } from "./base";
 import { authEndpoint } from "@/settings/endpoints";
 
@@ -25,7 +26,18 @@ export const authApis = baseApi.injectEndpoints({
             }),
             extraOptions: { skipAuth: false }
         }),
+        requestRefreshToken: build.mutation<any, { refreshToken: string }>({
+            query: (params) => ({
+                url: authEndpoint.REFRESH_TOKEN,
+                body: {
+                    refreshToken: params.refreshToken
+                },
+                flashError: true,
+                method: 'POST',
+            }),
+            extraOptions: { skipAuth: true }
+        }),
     })
 })
 
-export const { useRequestLoginMutation, useRequestLogoutMutation } = authApis;
+export const { useRequestLoginMutation, useRequestLogoutMutation, useRequestRefreshTokenMutation } = authApis;

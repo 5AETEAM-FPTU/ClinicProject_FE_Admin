@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
 import DashboardLayout from '../DashbardLayout'
-import { sidebarPatientData } from '@/helpers/data/SidebarPatientData'
+import { sidebarAdminData } from '@/helpers/data/SidebarAdminData'
 
-function AdminLayout({children}: {children: React.ReactNode}) {
+function AdminLayout({ children }: { children: React.ReactNode }) {
     return (
-        <DashboardLayout sidebarItems={sidebarPatientData}>
+        <DashboardLayout sidebarItems={sidebarAdminData}>
             {children}
         </DashboardLayout>
     )

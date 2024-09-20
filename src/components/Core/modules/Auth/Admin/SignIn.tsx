@@ -2,21 +2,28 @@
 import React from 'react';
 import Image from 'next/image';
 import Logo from '@public/icons/layout/p-clinic.png';
-import { Button, Input, ConfigProvider, Form } from 'antd';
+import { Button, Input, ConfigProvider, Form, message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { useRequestLoginMutation } from '@/stores/services/auth';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/hooks/redux-toolkit';
+import { setLoaded, setLoading } from '@/stores/features/loading';
 const SignIn: React.FC = () => {
   const [form] = useForm();
   const router = useRouter();
   const [requestLogin] = useRequestLoginMutation();
+  const dipatch = useAppDispatch();
   const handleSubmit = async (values: any) => {
+    dipatch(setLoading());
     const result = await requestLogin({ ...values, isRemember: true });
     if (result.error) {
+      message.error('Đăng nhập thất bại');
       console.error('Login failed', result.error);
     } else {
+      message.success('Đăng nhập thành công');
       router.replace('/dashboard/overview');
     }
+    dipatch(setLoaded());
   };
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default w-full h-full">

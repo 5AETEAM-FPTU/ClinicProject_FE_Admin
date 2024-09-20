@@ -1,5 +1,5 @@
 'use client'
-import { Button, Input, Layout } from 'antd'
+import { Button, Input, Layout, message } from 'antd'
 import { Irish_Grover } from 'next/font/google'
 import React, { useEffect, useState } from 'react'
 
@@ -15,6 +15,7 @@ import { Bell, Home, Logs, Search, Settings } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Footer } from 'antd/es/layout/layout'
 import { useRequestLogoutMutation } from '@/stores/services/auth'
+import { setLoaded, setLoading } from '@/stores/features/loading'
 
 const { Header, Sider, Content } = Layout
 const irishGrover = Irish_Grover({
@@ -50,10 +51,13 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
     const [requestLogout] = useRequestLogoutMutation()
     const router = useRouter()
     const handleLogout = async () => {
+        dispath(setLoading());
         const result = await requestLogout();
+        dispath(setLoaded());
         if (result.error) {
-            console.log('error');
+            message.error('Đăng xuất không thành công, vui lòng reload lại trang');
         } else {
+            message.success('Đăng xuất thành công');
             router.replace('/sign-in')
         }
     }

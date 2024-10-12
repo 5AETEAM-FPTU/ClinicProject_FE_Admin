@@ -1,10 +1,10 @@
 import { IndividualMenuItemType } from '@/components/Core/ui/Menu'
 import {
-    CalendarDays,
-    CalendarHeart,
-    CircleUserRound,
-    Headset,
+    Bell,
+    Box,
+    BriefcaseMedical,
     Home,
+    User,
 } from 'lucide-react'
 import React from 'react'
 
@@ -17,73 +17,61 @@ export const sidebarAdminData: IndividualMenuItemType[] = [
     {
         key: 'user',
         title: 'Người dùng',
-        icon: React.createElement(CalendarHeart),
+        icon: React.createElement(User),
         childrens: [
             {
-                key: 'doctors',
-                lable: 'Bác sĩ',
+                key: 'clinic',
+                lable: 'Phòng khám',
             },
             {
-                key: 'create-user',
-                lable: 'Tạo mới người dùng',
-            },
-            {
-                key: 'treatment-cancel',
-                lable: 'Bị hủy bỏ',
+                key: 'patient',
+                lable: 'Bệnh nhân',
             },
         ],
     },
     {
-        key: 'treatment-calendar',
-        title: 'Lịch khám',
-        icon: React.createElement(CalendarDays),
+        key: 'treatment',
+        title: 'Khám bệnh',
+        icon: React.createElement(BriefcaseMedical),
         childrens: [
             {
-                key: 'recently',
-                lable: 'Gần đây',
+                key: 'appointments',
+                lable: 'Đặt lịch',
             },
             {
-                key: 'update-calendar',
-                lable: 'Cập nhật lịch',
-            },
-            {
-                key: 'booked-calendar',
-                lable: 'Lịch đã đặt',
-            },
-            {
-                key: 'retreatment',
-                lable: 'Tái khám',
+                key: 'reports',
+                lable: 'Phiếu khám',
             },
         ],
     },
     {
-        key: 'consultation',
-        title: 'Tư vấn',
-        icon: React.createElement(Headset),
+        key: 'notification',
+        title: 'Thông báo',
+        icon: React.createElement(Bell),
         childrens: [
             {
-                key: 'pending-room',
-                lable: 'Phòng chờ',
+                key: 'system-notification',
+                lable: 'Hệ thống',
             },
             {
-                key: 'conversation',
-                lable: 'Trò chuyện',
+                key: 'contacts',
+                lable: 'Contacts',
+            },
+        ],
+    },
+    {
+        key: 'warehouse',
+        title: 'Tổng kho',
+        icon: React.createElement(Box),
+        childrens: [
+            {
+                key: 'services',
+                lable: 'Kho dịch vụ',
+            },
+            {
+                key: 'medicines',
+                lable: 'Kho thuốc',
             }
         ],
-    },
-    {
-        key: 'account',
-        title: 'Tài khoản',
-        icon: React.createElement(CircleUserRound),
-        childrens: [
-            {
-                key: 'profile',
-                lable: 'Trang cá nhân',
-            },
-            {
-                key: 'settings',
-                lable: 'Thiết lập',
-            }
-        ]
     },
 ]

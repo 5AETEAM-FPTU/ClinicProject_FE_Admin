@@ -263,7 +263,7 @@ const SignIn: React.FC = () => {
                 <Button
                   htmlType="submit"
                   size='large'
-                  className="w-full text-lg bg-[#0284C7] font-semibold mt-2 cursor-pointer rounded-lg border border-primary bg-primary p-6 text-black transition hover:bg-opacity-90"
+                  className="w-full text-lg bg-[#0284C7] text-white font-semibold mt-2 cursor-pointer rounded-lg border border-primary bg-primary p-6 text-black transition hover:bg-opacity-90"
                 >Đăng nhập</Button>
               </div>
             </Form>

@@ -103,10 +103,10 @@ export default function Component() {
                     <Button onClick={() => router.push('create-user?type=doctor')} icon={<PlusOutlined />} className="bg-[#0284C7] rounded-sm text-white font-bold !border-[#0284C7] text-md  box-content">
                         TẠO MỚI BÁC SĨ
                     </Button>
-                    <Button ghost icon={<ImportOutlined />} className="text-[#0284C7] rounded-sm text-[#0284C7] font-bold !border-[#0284C7] text-md box-content ">
+                    <Button ghost icon={<ImportOutlined />} className=" rounded-sm text-[#0284C7] font-bold !border-[#0284C7] text-md box-content ">
                         NHẬP
                     </Button>
-                    <Button ghost icon={<ExportOutlined />} className="text-[#0284C7] rounded-sm text-[#0284C7] font-bold !border-[#0284C7] text-md box-content">
+                    <Button ghost icon={<ExportOutlined />} className=" rounded-sm text-[#0284C7] font-bold !border-[#0284C7] text-md box-content">
                         XUẤT
                     </Button>
                 </Space>

@@ -1,32 +1,29 @@
 'use client'
-import { Button, Input, Layout, message } from 'antd'
-import { Irish_Grover } from 'next/font/google'
+import { Button, Layout, message } from 'antd'
 import React, { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 import Logo from '@public/main/logo/FinalLogo.png'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Menu, { IndividualMenuItemType, TAppPathLayoutState } from '../../Core/ui/Menu'
+import Menu, {
+    IndividualMenuItemType,
+    TAppPathLayoutState,
+} from '../../Core/ui/Menu'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-toolkit'
-import { toggleSidebar } from '@/stores/features/sidebar'
-import { Bell, Home, Logs, Search, Settings } from 'lucide-react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { Footer } from 'antd/es/layout/layout'
-import { useRequestLogoutMutation } from '@/stores/services/auth'
 import { setLoaded, setLoading } from '@/stores/features/loading'
+import { toggleSidebar } from '@/stores/features/sidebar'
+import { useRequestLogoutMutation } from '@/stores/services/auth'
+import { Home, Logs, Settings } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import AdminImage from '@public/main/admin.png'
 
 const { Header, Sider, Content } = Layout
-const irishGrover = Irish_Grover({
-    subsets: ['latin'],
-    weight: '400',
-    display: 'swap',
-})
 
 export type DashboardProps = {
     children: React.ReactNode
-    sidebarItems?: IndividualMenuItemType[];
+    sidebarItems?: IndividualMenuItemType[]
 }
 
 function DashboardLayout({ children, sidebarItems }: DashboardProps) {
@@ -51,13 +48,15 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
     const [requestLogout] = useRequestLogoutMutation()
     const router = useRouter()
     const handleLogout = async () => {
-        dispath(setLoading());
-        const result = await requestLogout();
-        dispath(setLoaded());
+        dispath(setLoading())
+        const result = await requestLogout()
+        dispath(setLoaded())
         if (result.error) {
-            message.error('Đăng xuất không thành công, vui lòng reload lại trang');
+            message.error(
+                'Đăng xuất không thành công, vui lòng reload lại trang',
+            )
         } else {
-            message.success('Đăng xuất thành công');
+            message.success('Đăng xuất thành công')
             router.replace('/sign-in')
         }
     }
@@ -90,7 +89,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                 collapsible
                 collapsed={collapsed}
                 className={cn(
-                    '!bg-dashboardBackgournd !min-w-[250px]',
+                    '!min-w-[250px] !bg-dashboardBackgournd',
                     `${collapsed && '!min-w-[80px]'}`,
                 )}
             >
@@ -108,10 +107,9 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.1 }}
-                                className={irishGrover.className}
                             >
                                 <p className="text-[24px] font-bold text-secondaryDarker">
-                                    P-CLINIC
+                                    ADMIN
                                 </p>
                             </motion.div>
                         )}
@@ -120,7 +118,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                 <Menu items={sidebarItems!} />
             </Sider>
             <Layout className="!bg-dashboardBackgournd">
-                <Header className="!bg-dashboardBackgournd flex !h-[74px] w-[calc(100%)] select-none flex-row items-center !px-[20px] leading-none">
+                <Header className="flex !h-[74px] w-[calc(100%)] select-none flex-row items-center !bg-dashboardBackgournd !px-[20px] leading-none">
                     <Button
                         type="text"
                         icon={
@@ -140,7 +138,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
 
                     <div className="flex w-full flex-row items-center justify-between gap-[20px]">
                         <div className="flex flex-col gap-2">
-                            <div className="text-secondarySupperDarker flex h-fit flex-row items-center gap-2">
+                            <div className="flex h-fit flex-row items-center gap-2 text-secondarySupperDarker">
                                 <Home size={18} />
                                 <span>/</span>
                                 <p>Trang</p>
@@ -159,45 +157,25 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                         </div>
                         <div className="flex flex-row items-center gap-[100px]">
                             {' '}
-                            <div>
-                                <Input
-                                    prefix={
-                                        <Search
-                                            size={18}
-                                            className="mr-3 text-secondaryDarker"
-                                        />
-                                    }
-                                    className="!w-[280px] !rounded-xl"
-                                    placeholder="Tìm kiếm"
-                                    size="middle"
-                                ></Input>
-                            </div>
                             <div className="flex flex-row items-center gap-5">
-                                <div className='cursor-pointer relative p-[10px] hover:bg-slate-200 bg-slate-100 rounded-lg transition-all duration-300'>
-                                    <Bell size={24} />
-                                    <div className="absolute right-[-5px] top-[-5px] flex h-[18px] w-[18px] flex-row items-center justify-center rounded-full bg-red-600">
-                                        <p className="text-[10px] text-white">
-                                            5
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="cursor-pointer p-[10px] hover:bg-slate-200 bg-slate-100 rounded-lg transition-all duration-300">
+                                <div className="cursor-pointer rounded-lg bg-slate-100 p-[10px] transition-all duration-300 hover:bg-slate-200">
                                     <Settings size={24} />
                                 </div>
-                                <div className="bg-secondarySupperDarker h-[30px] w-[2px]"></div>
+                                <div className="h-[30px] w-[2px] bg-secondarySupperDarker"></div>
 
-                                <div className="h-[40px] w-[40px] cursor-pointer overflow-hidden rounded-full border-2 border-secondaryDark">
+                                <div className="h-[40px] w-[40px] cursor-pointer overflow-hidden rounded-full">
                                     <Image
-                                        src={
-                                            'https://res.cloudinary.com/dy1uuo6ql/image/upload/v1726406772/udqesjq7wu1sewrhpdzn.jpg'
-                                        }
+                                        src={AdminImage}
                                         alt="avatar"
                                         width={200}
                                         height={200}
                                         className="h-full w-full object-cover"
                                     ></Image>
                                 </div>
-                                <div onClick={handleLogout} className="text-secondarySupperDarker cursor-pointer text-[16px] font-semibold">
+                                <div
+                                    onClick={handleLogout}
+                                    className="cursor-pointer text-[16px] font-semibold text-secondarySupperDarker"
+                                >
                                     Đăng xuất
                                 </div>
                             </div>
@@ -205,9 +183,9 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                     </div>
                 </Header>
                 <Content
-                    className="bg-dashboardBackgournd !p-[20px] !pb-0 overflow-y-auto"
+                    className="overflow-y-auto bg-dashboardBackgournd !p-[20px] !pb-0"
                     style={{
-                        margin: '20px 0px 0px 20px',
+                        margin: '0px 0px 0px 20px',
                         padding: 24,
                         minHeight: 280,
                     }}

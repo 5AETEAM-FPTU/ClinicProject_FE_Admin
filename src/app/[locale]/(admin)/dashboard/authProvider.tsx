@@ -32,6 +32,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
             webStorageClient.remove(constants.REFRESH_TOKEN);
             message.warning("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
             router.push('/sign-in');
+            webStorageClient.removeAll();
         }
     }, []);
 

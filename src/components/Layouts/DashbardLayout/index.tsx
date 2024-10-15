@@ -18,6 +18,7 @@ import { useRequestLogoutMutation } from '@/stores/services/auth'
 import { Home, Logs, Settings } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import AdminImage from '@public/main/admin.png'
+import webStorageClient from '@/utils/webStorageClient'
 
 const { Header, Sider, Content } = Layout
 
@@ -55,6 +56,8 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
             message.error(
                 'Đăng xuất không thành công, vui lòng reload lại trang',
             )
+            webStorageClient.removeAll();
+            router.replace('/sign-in')
         } else {
             message.success('Đăng xuất thành công')
             router.replace('/sign-in')

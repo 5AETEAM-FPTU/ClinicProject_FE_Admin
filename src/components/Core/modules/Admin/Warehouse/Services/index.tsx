@@ -44,16 +44,17 @@ export default function ServicesPage() {
     const searchName = searchParams.get('search') || ''
     const viewId = searchParams.get('viewId') || ''
 
-    const { services, refetch, totalPage } = useGetAllServicesQuery(
+    const { services, refetch, totalPage, isLoading:isLoadingService } = useGetAllServicesQuery(
         {
             pageSize: pageSize,
             pageIndex: currentPage,
             key: searchName,
         },
         {
-            selectFromResult: ({ data, isFetching }) => ({
+            selectFromResult: ({ data, isFetching, isLoading }) => ({
                 services: data?.body?.services || [],
                 isFetching,
+                isLoading,
                 totalPage: data?.body?.services?.totalPages + 10 || 50,
             }),
         },
@@ -230,6 +231,7 @@ export default function ServicesPage() {
                     columns={columns}
                     dataSource={services?.contents}
                     onChange={handleTableChange}
+                    loading={isLoadingService}
                 />
             </div>
             <UpdateService

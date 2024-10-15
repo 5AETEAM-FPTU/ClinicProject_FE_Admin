@@ -1,20 +1,12 @@
 'use client'
 import {
     useCreateNewMedicineGroupMutation,
-    useCreateNewMedicineMutation,
-    useCreateNewMedicineTypeMutation,
     useDeleteMedicineGroupMutation,
-    useDeleteMedicineTypeMutation,
     useGetAllMedicineGroupQuery,
-    useGetAllMedicineTypeQuery,
-    useUpdateMedicineGroupMutation,
-    useUpdateMedicineTypeMutation,
+    useUpdateMedicineGroupMutation
 } from '@/stores/services/medicine'
-import { Button, Form, Input, InputRef, message, Modal, Select } from 'antd'
-import { RotateCcw } from 'lucide-react'
-import React, { useEffect, useRef } from 'react'
-import { MedicinesType } from '..'
-import { constant } from 'lodash'
+import { Button, Input, InputRef, message, Modal } from 'antd'
+import React from 'react'
 
 type TProps = {
     open: boolean

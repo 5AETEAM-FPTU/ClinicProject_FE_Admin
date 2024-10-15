@@ -63,7 +63,7 @@ export default function Medicine() {
     const selectedMedicineType = searchParams.get('type') || ''
     const selectedMedicineGroup = searchParams.get('group') || ''
     let total: string = ''
-    const { medicines, refetch } = useGetAllMedicinesQuery(
+    const { medicines, refetch, isFetching, isLoading } = useGetAllMedicinesQuery(
         {
             pageSize: pageSize,
             pageIndex: currentPage,
@@ -72,11 +72,12 @@ export default function Medicine() {
             medicineGroupId: selectedMedicineGroup,
         },
         {
-            selectFromResult: ({ data, isFetching }) => {
+            selectFromResult: ({ data, isFetching, isLoading }) => {
                 total = data?.body?.medicines?.totalPages + 10 || 50
                 return {
                     medicines: data?.body?.medicines?.contents || [],
                     isFetching,
+                    isLoading
                 }
             },
         },
@@ -359,6 +360,7 @@ export default function Medicine() {
                         total: parseInt(total!),
                     }}
                     onChange={handleTableChange}
+                    loading={isLoading}
                 />
             </div>
             <UpdateMedicine open={openUpdateMedicine} setOpen={setOpenUpdateMedicine} medicineGroups={medicineGroup} medicineTypes={medicineType} refetch={refetch} />

@@ -6,6 +6,7 @@ import auth from './features/auth'
 import sidebar from './features/sidebar'
 import { authApis } from './services/auth'
 import loading from './features/loading'
+import { formServiceBaseApi } from './services/formServiceBase'
 
 export const createStore = (
     option?: ConfigureStoreOptions['preloadedState'] | undefined,
@@ -14,12 +15,13 @@ export const createStore = (
         reducer: {
             //todo state for adding reducer
             [authApis.reducerPath]: authApis.reducer,
+            [formServiceBaseApi.reducerPath]: formServiceBaseApi.reducer,
             auth,
             sidebar,
             loading,
         },
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(baseApi.middleware),
+            getDefaultMiddleware().concat(baseApi.middleware).concat(formServiceBaseApi.middleware),
     })
 export const store = createStore()
 

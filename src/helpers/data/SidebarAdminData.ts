@@ -4,6 +4,7 @@ import {
     Box,
     BriefcaseMedical,
     Home,
+    StickyNote,
     User,
 } from 'lucide-react'
 import React from 'react'
@@ -41,6 +42,21 @@ export const sidebarAdminData: IndividualMenuItemType[] = [
             {
                 key: 'reports',
                 lable: 'Phiếu khám',
+            },
+        ],
+    },
+    {
+        key: 'blog',
+        title: 'Blog',
+        icon: React.createElement(StickyNote),
+        childrens: [
+            {
+                key: 'category',
+                lable: 'Danh mục',
+            },
+            {
+                key: 'post',
+                lable: 'Bài viết',
             },
         ],
     },

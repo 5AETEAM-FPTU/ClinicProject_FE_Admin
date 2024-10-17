@@ -65,6 +65,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
     }
     useEffect(() => {
         return handlePathSegments()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
 
     console.log(appLayoutState)

@@ -18,7 +18,7 @@ const medicineEndpoints = {
     GET_ALL_MEDICINE_TYPE: '/admin/medicineType/all',
     GET_ALL_MEDICINE_GROUP: '/admin/medicineGroup/all',
     GET_MEDICINE_BY_ID: '/admin/medicine',
-    
+
     CREATE_MEDICINE: '/admin/medicine/create',
     CREATE_MEDICINE_TYPE: '/admin/medicineType/create',
     CREATE_MEDICINE_GROUP: '/admin/medicineGroup/create',
@@ -40,10 +40,26 @@ const serviceEndpoints = {
     UPDATE_SERVICE_BY_ID: '/services/update/{:id}',
 }
 
+const blogEndpoints = {
+    GET_ALL_CATEGORY: '/api/category/get',
+    GET_ALL_ACTIVE_CATEGORY: '/api/category/get-active',
+    CREATE_CATEGORY: '/api/category/create',
+    DELETE_CATEGORY: '/api/category/delete/{:id}',
+    UPDATE_CATEGORY: '/api/category/update',
+    GET_ALL_POST: '/api/post/get',
+    GET_ALL_ACTIVE_POST: '/api/post/get-active',
+    CREATE_POST: '/api/post/create',
+    DELETE_POST: '/api/post/delete/{:id}',
+    UPDATE_POST: '/api/post/update',
+    GET_POST_BY_SLUG: '/api/post/get/{:slug}',
+    GET_POST_BY_ID: '/api/post/getById/{:id}',
+}
+
 export {
     demoEnpoints,
     authEndpoint,
     serviceEndpoints,
     adminEndpoint,
     medicineEndpoints,
+    blogEndpoints
 }

@@ -41,7 +41,7 @@ export default function ViewService({ open, setOpen, refetch }: TProps) {
         // refetchService();
     }, [viewId])
 
-    const onFinish = async (values: any) => {}
+    const onFinish = async (values: any) => { }
     const [myForm] = Form.useForm()
 
     useEffect(() => {

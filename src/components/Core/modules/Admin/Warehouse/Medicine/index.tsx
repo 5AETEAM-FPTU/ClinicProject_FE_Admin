@@ -179,7 +179,7 @@ export default function Medicine() {
         setOpenUpdateMedicine(true)
     }
 
-    const columns: TableProps<MedicinesType>['columns'] = [
+    const columns: TableProps['columns'] = [
         {
             title: 'Tên thuốc',
             dataIndex: 'medicineName',

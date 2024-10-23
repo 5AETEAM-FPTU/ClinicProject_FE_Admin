@@ -55,11 +55,20 @@ const blogEndpoints = {
     GET_POST_BY_ID: '/api/post/getById/{:id}',
 }
 
+const contactEndpoints = {
+    CREATE_CONTACT: '/api/contact/create',
+    UPDATE_CONTACT: '/api/contact/update',
+    GET_ALLCONTACT: '/api/contact/get',
+    DELETE_CONTACT: '/api/contact/delete/{:id}',
+    GET_CONTACT_BY_ID: '/api/contact/get/{:id}',
+}
+
 export {
     demoEnpoints,
     authEndpoint,
     serviceEndpoints,
     adminEndpoint,
     medicineEndpoints,
-    blogEndpoints
+    blogEndpoints,
+    contactEndpoints
 }

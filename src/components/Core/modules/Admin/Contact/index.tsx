@@ -5,22 +5,16 @@ import {
     Input,
     message,
     Modal,
-    Select,
-    Space,
     Table,
     TableProps,
 } from 'antd'
-import { Delete, Edit, Eye, Plus } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import AddService from './AddService'
-import {
-    useDeleteServiceMutation,
-    useGetAllServicesQuery,
-} from '@/stores/services/services'
-import UpdateService from './UpdateService'
+import { Delete, Edit, Eye } from 'lucide-react'
+import React, { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import ViewService from './ViewService'
+import ViewDetailContact from './Detail'
+import { useDeleteContactMutation, useGetAllContactQuery, useUpdateContactMutation } from '@/stores/services/contact'
 const { confirm } = Modal;
+
 
 export type ServiceType = {
     id: string
@@ -31,37 +25,35 @@ export type ServiceType = {
     description: string
 }
 
-export default function ServicesPage() {
+export default function ContactsPage() {
     const router = useRouter()
     const searchParams = useSearchParams()
 
-    const [openAddNewService, setOpenAddNewService] = useState<boolean>(false)
     // const [pageSize, setPageSize] = useState<number>(8)
     // const [currentPage, setCurrentPage] = useState<number>(1)
     const [selectedId, setSelectedId] = useState<string>('')
-    const [openUpdateService, setOpenUpdateService] = useState<boolean>(false)
-    const [openViewService, setOpenViewService] = useState<boolean>(false)
-    const pageSize = searchParams.get('pageSize') || '8'
+    const [openViewDetailContact, setOpenViewDetailContact] = useState<boolean>(false)
+    const pageSize = searchParams.get('pageSize') || '2'
     const currentPage = searchParams.get('page') || '1'
     const searchName = searchParams.get('search') || ''
     const viewId = searchParams.get('viewId') || ''
-
-    const { services, refetch, totalPage, isLoading: isLoadingService } = useGetAllServicesQuery(
+    const [updateContact, { isLoading: isUpdateLoading }] = useUpdateContactMutation();
+    const { contacts, refetch, totalPage, isLoading: isLoadingContact } = useGetAllContactQuery(
         {
-            pageSize: pageSize,
-            pageIndex: currentPage,
-            key: searchName,
+            page: parseInt(currentPage),
+            limit: parseInt(pageSize),
+            search: searchName,
         },
         {
             selectFromResult: ({ data, isFetching, isLoading }) => ({
-                services: data?.body?.services || [],
+                contacts: data?.body?.result || [],
                 isFetching,
                 isLoading,
-                totalPage: data?.body?.services?.totalPages,
+                totalPage: data?.body?.totalPages,
             }),
         },
     )
-    const [deleteService, { isLoading }] = useDeleteServiceMutation()
+    const [deleteContact, { isLoading }] = useDeleteContactMutation()
     const changeRoute = (
         pagination: { current: string; pageSize: string },
         filters: { viewId?: string; search?: string },
@@ -80,7 +72,17 @@ export default function ServicesPage() {
         changeRoute(pagination, {})
         refetch()
     }
-    const handleDeleteService = async (id: string) => {
+    const handleUpdateContact = async (id: string, status: number) => {
+        try {
+            setSelectedId(id);
+            await updateContact({ id, status }).unwrap()
+            message.success('Cập nhật trạng thái liên hệ thành công!')
+            refetch()
+        } catch (error) {
+            message.error('Cập nhật trạng thái liên hệ không thành công!')
+        }
+    }
+    const handleDeleteContact = async (id: string) => {
         confirm({
             title: 'Bạn có chắc không?',
             content: 'Khi bạn xác nhận xóa, dữ liệu sẽ không thể khôi phục',
@@ -89,8 +91,8 @@ export default function ServicesPage() {
             async onOk() {
                 try {
                     setSelectedId(id)
-                    await deleteService({ id }).unwrap()
-                    if (services.length === 1 && parseInt(totalPage) > 1) {
+                    await deleteContact(id).unwrap()
+                    if (contacts.length === 1 && parseInt(totalPage) > 1) {
                         const page = parseInt(currentPage) - 1
                         changeRoute(
                             {
@@ -102,10 +104,10 @@ export default function ServicesPage() {
                             },
                         )
                     }
-                    message.success('Xóa dịch vụ thành công!')
+                    message.success('Xóa thông tin liên hệ thành công!')
                     refetch()
                 } catch (error) {
-                    message.error('Xóa dịch vụ không thành công!')
+                    message.error('Xóa thông tin liên hệ không thành công!')
                 }
             },
         });
@@ -116,52 +118,57 @@ export default function ServicesPage() {
             { current: currentPage, pageSize: pageSize },
             { viewId: id, search: searchName },
         )
-        setOpenViewService(true)
+        setOpenViewDetailContact(true)
     }
-    const handleViewService = (id: string) => {
-        changeRoute(
-            { current: currentPage, pageSize: pageSize },
-            { viewId: id, search: searchName },
-        )
-        setOpenUpdateService(true)
-    }
+
     const columns: TableProps<ServiceType>['columns'] = [
         {
-            title: 'Mã dịch vụ',
-            dataIndex: 'code',
-            key: 'code',
+            title: 'Họ và tên',
+            dataIndex: 'fullName',
+            key: 'fullName',
         },
         {
-            title: 'Tên dịch vụ',
-            dataIndex: 'name',
-            key: 'name',
+            title: 'Email hoặc số điện thoại',
+            dataIndex: 'emailOrPhone',
+            key: 'emailOrPhone',
         },
         {
-            title: 'Mô tả',
-            dataIndex: 'description',
-            key: 'description',
-            width: '30%',
+            title: 'Giới tính',
+            dataIndex: 'gender',
+            key: 'gender',
             ellipsis: true,
+            render(value, record, index) {
+                return <span>{value === 1 ? 'Nam' : 'Nữ'}</span>
+            },
         },
         {
-            title: 'Nhóm dịch vụ',
-            dataIndex: 'group',
-            key: 'group',
+            title: 'Tuổi',
+            dataIndex: 'age',
+            key: 'age',
         },
         {
-            title: 'Đơn giá',
-            dataIndex: 'price',
-            key: 'price',
+            title: 'Trạng thái',
+            dataIndex: 'status',
+            key: 'status',
+            render: (value, record) => (
+                <div>
+                    {value === 2 ? (
+                        <span className="text-green-500">Đã xử lý</span>
+                    ) : (
+                        <span className="text-red-500">Chưa xử lý</span>
+                    )}
+                </div>
+            ),
         },
         {
             title: 'Hành động',
             key: 'action',
             fixed: 'right',
-            render: (value, record) => (
+            render: (value, record: any) => (
                 <div className="flex flex-row gap-0">
                     <Button
                         type="text"
-                        onClick={() => handleViewServiceJustView(record.id)}
+                        onClick={() => handleViewServiceJustView(record._id)}
                     >
                         <Eye
                             size={16}
@@ -170,7 +177,8 @@ export default function ServicesPage() {
                     </Button>
                     <Button
                         type="text"
-                        onClick={() => handleViewService(record.id)}
+                        loading={selectedId === record._id && isUpdateLoading}
+                        onClick={() => handleUpdateContact(record._id, record.status === 1 ? 2 : 1)}
                     >
                         <Edit
                             size={16}
@@ -179,10 +187,10 @@ export default function ServicesPage() {
                     </Button>
                     <Button
                         type="text"
-                        loading={selectedId === record.id && isLoading}
+                        loading={selectedId === record._id && isLoading}
                     >
                         <Delete
-                            onClick={() => handleDeleteService(record.id)}
+                            onClick={() => handleDeleteContact(record._id)}
                             size={16}
                             className="cursor-pointer text-secondarySupperDarker"
                         />
@@ -197,23 +205,8 @@ export default function ServicesPage() {
             <div className="flex w-full flex-row justify-between">
                 <div>
                     <h3 className="text-[20px] font-semibold text-secondarySupperDarker">
-                        Quản lý dịch vụ khám chữa bệnh
+                        Quản lý liên hệ
                     </h3>
-                    <p>Quản lý các loại dịch vụ khám chữa bệnh</p>
-                </div>
-                <div className="flex items-center gap-5">
-                    <Button
-                        type="primary"
-                        className="rounded-lg bg-secondarySupperDarker px-5"
-                        onClick={() => setOpenAddNewService(true)}
-                    >
-                        <Plus size={16} /> THÊM DỊCH VỤ MỚI
-                    </Button>
-                    <AddService
-                        open={openAddNewService}
-                        setOpen={setOpenAddNewService}
-                        refetch={refetch}
-                    />
                 </div>
             </div>
             <div className="flex w-full flex-row justify-between">
@@ -222,7 +215,6 @@ export default function ServicesPage() {
                     autoComplete="off"
                     className="flex w-full flex-row justify-between"
                     layout="horizontal"
-                    onChange={(value) => console.log(value)}
                 >
                     <Form.Item label="Tìm kiếm">
                         <Input
@@ -246,6 +238,7 @@ export default function ServicesPage() {
             <div>
                 <Table
                     scroll={{ x: 'max-content' }}
+                    rowKey={(record: any) => record._id}
                     pagination={{
                         current: parseInt(currentPage),
                         pageSize: parseInt(pageSize),
@@ -253,19 +246,14 @@ export default function ServicesPage() {
                     }}
                     className="overflow-hidden rounded-lg shadow-third"
                     columns={columns}
-                    dataSource={services?.contents}
+                    dataSource={contacts}
                     onChange={handleTableChange}
-                    loading={isLoadingService}
+                    loading={isLoadingContact}
                 />
             </div>
-            <UpdateService
-                open={openUpdateService}
-                setOpen={setOpenUpdateService}
-                refetch={refetch}
-            />
-            <ViewService
-                open={openViewService}
-                setOpen={setOpenViewService}
+            <ViewDetailContact
+                open={openViewDetailContact}
+                setOpen={setOpenViewDetailContact}
                 refetch={refetch}
             />
         </div>

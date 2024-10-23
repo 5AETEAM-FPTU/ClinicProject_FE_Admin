@@ -71,7 +71,7 @@ export const sidebarAdminData: IndividualMenuItemType[] = [
             },
             {
                 key: 'contacts',
-                lable: 'Contacts',
+                lable: 'Liên hệ',
             },
         ],
     },

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-extra-non-null-assertion */
 'use client'
-import { Button, Layout, message } from 'antd'
-import React, { useEffect, useState } from 'react'
+import { Button, Layout, message, Popover } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 import Logo from '@public/main/logo/FinalLogo.png'
@@ -15,12 +16,21 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-toolkit'
 import { setLoaded, setLoading } from '@/stores/features/loading'
 import { toggleSidebar } from '@/stores/features/sidebar'
 import { useRequestLogoutMutation } from '@/stores/services/auth'
-import { Home, Logs, Settings } from 'lucide-react'
+import { Bell, Home, Logs, Settings } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import AdminImage from '@public/main/admin.png'
 import webStorageClient from '@/utils/webStorageClient'
+import { useQuery } from 'convex/react'
+import { api } from '@convex/_generated/api'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
+import Notifications from './Notifications'
+import { useTrigger } from '@/hooks/useTrigger'
 
 const { Header, Sider, Content } = Layout
+
+export interface JwtPayloadUpdated extends JwtPayload {
+    role: string
+}
 
 export type DashboardProps = {
     children: React.ReactNode
@@ -56,7 +66,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
             message.error(
                 'Đăng xuất không thành công, vui lòng reload lại trang',
             )
-            webStorageClient.removeAll();
+            webStorageClient.removeAll()
             router.replace('/sign-in')
         } else {
             message.success('Đăng xuất thành công')
@@ -65,6 +75,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
     }
     useEffect(() => {
         return handlePathSegments()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
 
     console.log(appLayoutState)
@@ -84,6 +95,23 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
             }
         })
     }
+    const notifications = useQuery(
+        api._user_notifications.functions.getUserNofitication,
+        {
+            receiverId: jwtDecode<JwtPayloadUpdated>(
+                webStorageClient.getToken()!,
+            ).sub!,
+        },
+    )
+    const { handleTrigger, trigger } = useTrigger()
+    const prevNotificationsLength = useRef(notifications?.length)
+
+    const hasNewNotification = !!notifications?.length
+    const numberOfUnreadNotifications = notifications?.filter(
+        (notification) => !notification.isRead,
+    )
+
+    const audioRef = useRef<HTMLAudioElement | null>(null)
 
     return (
         <Layout className="!h-screen">
@@ -161,6 +189,38 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                         <div className="flex flex-row items-center gap-[100px]">
                             {' '}
                             <div className="flex flex-row items-center gap-5">
+                                <Popover
+                                    trigger={'click'}
+                                    open={trigger}
+                                    content={
+                                        <Notifications
+                                            payload={notifications!}
+                                        />
+                                    }
+                                    onOpenChange={handleTrigger}
+                                    overlayClassName={cn(
+                                        'rounded-lg shadow-third',
+                                    )}
+                                >
+                                    <div
+                                        className={cn(
+                                            'relative cursor-pointer rounded-lg bg-slate-100 p-[10px] transition-all duration-300 hover:bg-slate-200',
+                                            `${trigger ? 'bg-secondaryDarkerOpacity' : ''}`,
+                                        )}
+                                    >
+                                        <Bell size={24} />
+                                        {numberOfUnreadNotifications!?.length >
+                                            0 && (
+                                            <div className="absolute right-[-5px] top-[-5px] flex h-[18px] w-[18px] flex-row items-center justify-center rounded-full bg-red-600">
+                                                <p className="text-[10px] text-white">
+                                                    {hasNewNotification
+                                                        ? numberOfUnreadNotifications?.length
+                                                        : null}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </Popover>
                                 <div className="cursor-pointer rounded-lg bg-slate-100 p-[10px] transition-all duration-300 hover:bg-slate-200">
                                     <Settings size={24} />
                                 </div>

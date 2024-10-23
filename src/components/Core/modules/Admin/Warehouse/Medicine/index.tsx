@@ -10,8 +10,10 @@ import {
     Form,
     Input,
     message,
+    Modal,
     Select,
-    Table
+    Table,
+    TableProps
 } from 'antd'
 import { Delete, Edit, Plus } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -20,6 +22,8 @@ import AddMedicine from './AddMedicine'
 import ManageMedicineGroup from './ManageMedicineGroup'
 import ManageMedicineType from './ManageMedicineType'
 import UpdateMedicine from './UpdateMedicine'
+
+const { confirm } = Modal;
 
 export type MedicinesType = {
     medicineId: string
@@ -73,7 +77,7 @@ export default function Medicine() {
         },
         {
             selectFromResult: ({ data, isFetching, isLoading }) => {
-                total = data?.body?.medicines?.totalPages + 10 || 50
+                total = data?.body?.medicines?.totalPages
                 return {
                     medicines: data?.body?.medicines?.contents || [],
                     isFetching,
@@ -138,14 +142,36 @@ export default function Medicine() {
     ] = useDeleteMedicineMutation()
 
     const handleDeleteMedicine = async (id: string) => {
-        try {
-            setSelectedId(id)
-            await deleteMedicine({ id }).unwrap()
-            refetch()
-            message.success('Xóa thuốc thành công!')
-        } catch (error) {
-            message.error('Xóa thuốc thất bại')
-        }
+        confirm({
+            title: 'Bạn có chắc không?',
+            content: 'Khi bạn xác nhận xóa, dữ liệu sẽ không thể khôi phục',
+            okText: 'Có',
+            cancelText: 'Không',
+            async onOk() {
+                try {
+                    setSelectedId(id)
+                    await deleteMedicine({ id }).unwrap()
+                    if (medicines.length === 1 && parseInt(total) > 1) {
+                        const page = parseInt(currentPage) - 1
+                        changeRoute(
+                            {
+                                current: page.toString(),
+                                pageSize: pageSize,
+                            },
+                            {
+                                type: selectedMedicineType,
+                                group: selectedMedicineGroup,
+                                search: searchName,
+                            },
+                        )
+                    }
+                    refetch()
+                    message.success('Xóa thuốc thành công!')
+                } catch (error) {
+                    message.error('Xóa thuốc thất bại')
+                }
+            },
+        });
     }
     const handleViewService = (id: string) => {
         console.log(id)
@@ -153,7 +179,7 @@ export default function Medicine() {
         setOpenUpdateMedicine(true)
     }
 
-    const columns = [
+    const columns: TableProps['columns'] = [
         {
             title: 'Tên thuốc',
             dataIndex: 'medicineName',
@@ -182,6 +208,7 @@ export default function Medicine() {
         {
             title: 'Hành động',
             key: 'action',
+            fixed: 'right',
             render: (value: any, record: any) => (
                 <div className="flex flex-row gap-0">
                     <Button
@@ -305,7 +332,7 @@ export default function Medicine() {
                             className="w-[224px]"
                             placeholder="Dạng"
                             defaultValue={''}
-                            onChange={(e) =>  changeRoute(
+                            onChange={(e) => changeRoute(
                                 {
                                     current: currentPage,
                                     pageSize: pageSize,
@@ -333,7 +360,7 @@ export default function Medicine() {
                     <Form.Item label="Tìm kiếm">
                         <Input
                             placeholder="Nhập tên thuốc"
-                            onChange={(e) =>  changeRoute(
+                            onChange={(e) => changeRoute(
                                 {
                                     current: currentPage,
                                     pageSize: pageSize,
@@ -351,13 +378,14 @@ export default function Medicine() {
 
             <div>
                 <Table
+                    scroll={{ x: 'max-content' }}
                     className="overflow-hidden rounded-lg shadow-third"
                     columns={columns}
                     dataSource={medicineData}
                     pagination={{
                         current: parseInt(currentPage),
                         pageSize: parseInt(pageSize),
-                        total: parseInt(total!),
+                        total: parseInt(pageSize) * (parseInt(total)),
                     }}
                     onChange={handleTableChange}
                     loading={isLoading}

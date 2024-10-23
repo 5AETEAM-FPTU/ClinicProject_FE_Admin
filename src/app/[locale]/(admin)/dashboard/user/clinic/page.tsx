@@ -1,3 +1,5 @@
+import User from "@/components/Core/modules/Admin/User";
+
 export default function Component() {
-    return (<div/>);
+    return (<User />);
 }

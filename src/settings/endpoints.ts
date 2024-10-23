@@ -63,6 +63,21 @@ const contactEndpoints = {
     GET_CONTACT_BY_ID: '/api/contact/get/{:id}',
 }
 
+const userEndpoints = {
+    GET_DOCTORS: '/admin/doctors/all',
+    ADD_DOCTOR: '/doctor/adding',
+    REMOVE_DOCTOR: '/admin/doctor/{doctorId}',
+}
+
+const enumEndpoints = {
+    GET_SPECIALTY: '/enum/getAllSpecialty',
+    GET_RETREATMENT_TYPE: '/enum/getAllRetreatmentType',
+    GET_POSITION: '/enum/getAllPosition',
+    GET_GENDER: '/enum/getAllGender',
+    GET_APPOINTMENT_STATUS: '/enum/getAllAppointmentStatus',
+}
+
+
 export {
     demoEnpoints,
     authEndpoint,
@@ -70,5 +85,7 @@ export {
     adminEndpoint,
     medicineEndpoints,
     blogEndpoints,
-    contactEndpoints
+    contactEndpoints,
+    userEndpoints,
+    enumEndpoints
 }

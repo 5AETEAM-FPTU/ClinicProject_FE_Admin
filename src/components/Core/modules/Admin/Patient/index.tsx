@@ -35,8 +35,9 @@ export default function Patient() {
     const [openViewPatient, setOpenViewPatient] = useState(false)
     const pageSize = searchParams.get('pageSize') || '3'
     const currentPage = searchParams.get('page') || '1'
+    const keyword = searchParams.get('search') || ''
 
-    const { users, isLoading, totalPage, refetch } = useGetAllPatientsQuery({ pageIndex: currentPage, pageSize: pageSize }, {
+    const { users, isLoading, totalPage, refetch } = useGetAllPatientsQuery({ pageIndex: currentPage, pageSize: pageSize, keyword: keyword }, {
         selectFromResult: ({ data, isFetching, isLoading }) =>
         ({
             users: data?.body?.users,

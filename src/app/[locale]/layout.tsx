@@ -7,8 +7,8 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "P-CLINIC",
-  description: "P-CLINIC",
+  title: "P-CLINIC-ADMIN",
+  description: "P-CLINIC-ADMIN",
   icons: "/icons/layout/p-clinic.png",
 };
 

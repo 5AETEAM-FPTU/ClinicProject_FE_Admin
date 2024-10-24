@@ -29,7 +29,20 @@ export const adminApis = baseApi.injectEndpoints({
             }),
             extraOptions: { skipAuth: false }
         }),
+        getStaticInformation: build.query<any, void>({
+            query: () => ({
+                url: adminEndpoint.GET_STATIC_INFORMATION,
+                flashError: true,
+                method: 'GET',
+            }),
+            extraOptions: { skipAuth: false }
+        }),
     })
 })
 
-export const { useGetStaffTypeQuery, useCreateStaffMutation, useGetAllDoctorQuery } = adminApis;
+export const {
+    useGetStaffTypeQuery,
+    useCreateStaffMutation,
+    useGetAllDoctorQuery,
+    useGetStaticInformationQuery
+} = adminApis;

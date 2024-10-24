@@ -67,6 +67,7 @@ const userEndpoints = {
     GET_DOCTORS: '/admin/doctors/all',
     ADD_DOCTOR: '/doctor/adding',
     REMOVE_DOCTOR: '/admin/doctor/{doctorId}',
+    GET_PATIENTS: '/admin/users/all',
 }
 
 const enumEndpoints = {

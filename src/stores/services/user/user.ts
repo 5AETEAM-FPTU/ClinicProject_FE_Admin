@@ -43,11 +43,24 @@ const contactService = baseApi.injectEndpoints({
                 flashError: true,
             }),
         }),
+        getAllPatients: build.query<any, { pageIndex: string, pageSize: string}>({
+            query: (param) => ({
+                url: userEndpoints.GET_PATIENTS,
+                method: 'GET',
+                params: {
+                    pageIndex: param.pageIndex,
+                    pageSize: param.pageSize,
+                    // keyword: param.keyword
+                },
+                flashError: true,
+            }),
+        }),
     }),
 })
 
 export const {
     useGetAllDoctorsQuery,
     useAddDoctorMutation,
-    useRemoveDoctorMutation
+    useRemoveDoctorMutation,
+    useGetAllPatientsQuery
 } = contactService

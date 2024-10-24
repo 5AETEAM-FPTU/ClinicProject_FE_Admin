@@ -11,6 +11,7 @@ const adminEndpoint = {
     GET_STAFF_TYPE: '/enums/getAllDoctorStaffTypes',
     ADD_STAFF: '/doctor/adding',
     GET_ALL_DOCTOR: '/admin/getAllDoctor',
+    GET_STATIC_INFORMATION: '/admin/static-information',
 }
 
 const medicineEndpoints = {
@@ -67,6 +68,7 @@ const userEndpoints = {
     GET_DOCTORS: '/admin/doctors/all',
     ADD_DOCTOR: '/doctor/adding',
     REMOVE_DOCTOR: '/admin/doctor/{doctorId}',
+    GET_PATIENTS: '/admin/users/all',
 }
 
 const enumEndpoints = {

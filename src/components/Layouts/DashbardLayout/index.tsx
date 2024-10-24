@@ -62,16 +62,10 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
         dispath(setLoading())
         const result = await requestLogout()
         dispath(setLoaded())
-        if (result.error) {
-            message.error(
-                'Đăng xuất không thành công, vui lòng reload lại trang',
-            )
-            webStorageClient.removeAll()
-            router.replace('/sign-in')
-        } else {
-            message.success('Đăng xuất thành công')
-            router.replace('/sign-in')
-        }
+        webStorageClient.removeAll()
+        message.success('Đăng xuất thành công')
+        router.replace('/sign-in')
+      
     }
     useEffect(() => {
         return handlePathSegments()

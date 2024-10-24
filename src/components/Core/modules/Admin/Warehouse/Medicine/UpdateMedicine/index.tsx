@@ -42,6 +42,7 @@ export default function UpdateMedicine({
             medicineGroupId: medicine?.group?.groupId,
             medicineTypeId: medicine?.type?.typeId,
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [medicine])
     
     const onFinish = async (values: any) => {

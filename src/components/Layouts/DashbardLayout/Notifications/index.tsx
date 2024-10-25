@@ -105,7 +105,7 @@ function NotificationItem({ item }: { item: UserNofiticationPayload }) {
                     className="mt-2 flex w-[100%] flex-col items-center justify-center overflow-hidden text-[14px] text-secondarySupperDarker"
                 >
                     <div className="w-[90%]">
-                        <p className="w-full break-words">{item.description}</p>
+                        <p className="w-full break-words" dangerouslySetInnerHTML={{ __html: item.description }}></p>
                     </div>
                 </motion.div>
             </div>

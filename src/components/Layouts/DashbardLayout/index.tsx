@@ -118,6 +118,7 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
                     `${collapsed && '!min-w-[80px]'}`,
                 )}
             >
+                <audio ref={audioRef} preload='auto' src='https://res.cloudinary.com/dy1uuo6ql/video/upload/v1728659255/paowhflbqnlzhj092x2z.mp3' />
                 <div className="flex h-fit w-full flex-row items-center justify-center gap-2">
                     <div className="flex flex-row gap-2 border-b-[2px] border-secondaryDark p-4">
                         <div className="h-[45px] w-[45px]">

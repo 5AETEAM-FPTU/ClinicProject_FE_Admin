@@ -97,15 +97,27 @@ function DashboardLayout({ children, sidebarItems }: DashboardProps) {
             ).sub!,
         },
     )
+    const audioRef = useRef<HTMLAudioElement | null>(null)
     const { handleTrigger, trigger } = useTrigger()
     const prevNotificationsLength = useRef(notifications?.length)
-
+    useEffect(() => {
+        if (audioRef.current && notifications) {
+            if (
+                prevNotificationsLength.current !== undefined &&
+                notifications?.length > prevNotificationsLength.current
+            ) {
+                if (notifications?.length > prevNotificationsLength.current) {
+                    audioRef.current.play();
+                }
+            }
+        }
+        prevNotificationsLength.current = notifications?.length;
+    }, [notifications]);
     const hasNewNotification = !!notifications?.length
     const numberOfUnreadNotifications = notifications?.filter(
         (notification) => !notification.isRead,
     )
 
-    const audioRef = useRef<HTMLAudioElement | null>(null)
 
     return (
         <Layout className="!h-screen">

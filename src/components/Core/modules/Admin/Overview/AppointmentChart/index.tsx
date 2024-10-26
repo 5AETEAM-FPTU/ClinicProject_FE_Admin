@@ -9,7 +9,7 @@ const AppointmentChart = ({ appointmentMonthly }: { appointmentMonthly: any }) =
 
     // Chuyển đổi dữ liệu thành định dạng biểu đồ
     const labels = Object.keys(appointmentMonthly);
-    const dataValues = Object.values(appointmentMonthly);
+    const dataValues = Object.values(appointmentMonthly).map((item: any) => item);
 
     const data = {
         labels: labels,

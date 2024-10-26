@@ -9,7 +9,7 @@ const RevenueChart = ({ monthlyRevenue }: { monthlyRevenue: any }) => {
 
     // Chuyển đổi dữ liệu thành định dạng biểu đồ
     const labels = Object.keys(monthlyRevenue);
-    const dataValues = Object.values(monthlyRevenue);
+    const dataValues = Object.values(monthlyRevenue).map((item: any) => item / 100);
 
     const data = {
         labels: labels,
@@ -30,7 +30,6 @@ const RevenueChart = ({ monthlyRevenue }: { monthlyRevenue: any }) => {
         scales: {
             y: {
                 beginAtZero: true,
-                max: 10000000, // Giới hạn tối đa là 1 tỷ
                 title: {
                     display: true,
                     text: 'Doanh Thu (VND)',

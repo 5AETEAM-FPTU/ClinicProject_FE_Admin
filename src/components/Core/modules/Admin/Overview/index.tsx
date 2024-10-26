@@ -57,11 +57,11 @@ export default function AdminOverView() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 <div className="relative w-full bg-gradient-to-r from-[#0284C7] to-[#00B5F1] rounded-xl shadow-third min-h-[200px]">
                     <p className="m-0 px-[20px] mt-2 text-[36px] font-bold text-white">
-                        Doanh thu
+                        Doanh thu (VNĐ)
                     </p>
                     <div className="flex text-white flex-row gap-2 px-[20px] items-center pt-2">
                         <h3 className="text-[40px] font-bold">
-                            {info && <PureIncrement start={0} end={formatNumber(info.revenueInCurrentMonth)} duration={1} />} VNĐ
+                            {info && <PureIncrement start={0} end={formatNumber(info.revenueInCurrentMonth / 100)} duration={1} />}
                         </h3>
                     </div>
                 </div>
@@ -126,10 +126,10 @@ export default function AdminOverView() {
             </div>
             <div className="flex flex-col justify-between rounded-2xl bg-white shadow-third mt-6">
                 <p className="m-0 px-[20px] mt-2 text-[36px] font-bold text-secondarySupperDarker">
-                    Doanh thu trong năm nay
+                    Doanh thu trong năm nay (VNĐ)
                 </p>
                 <p className="m-0 p-0 text-center text-[80px] font-semibold text-[#003553]">
-                    {info && <PureIncrement start={0} end={formatNumber(info.revenueInCurrentYear)} duration={1} />} VNĐ
+                    {info && <PureIncrement start={0} end={formatNumber(info.revenueInCurrentYear / 100)} duration={1} />}
 
                 </p>
             </div>

@@ -33,7 +33,7 @@ export default function ContactsPage() {
     // const [currentPage, setCurrentPage] = useState<number>(1)
     const [selectedId, setSelectedId] = useState<string>('')
     const [openViewDetailContact, setOpenViewDetailContact] = useState<boolean>(false)
-    const pageSize = searchParams.get('pageSize') || '2'
+    const pageSize = searchParams.get('pageSize') || '6'
     const currentPage = searchParams.get('page') || '1'
     const searchName = searchParams.get('search') || ''
     const viewId = searchParams.get('viewId') || ''

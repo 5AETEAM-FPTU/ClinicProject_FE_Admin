@@ -30,21 +30,21 @@ export const sidebarAdminData: IndividualMenuItemType[] = [
             },
         ],
     },
-    {
-        key: 'treatment',
-        title: 'Khám bệnh',
-        icon: React.createElement(BriefcaseMedical),
-        childrens: [
-            {
-                key: 'appointments',
-                lable: 'Đặt lịch',
-            },
-            {
-                key: 'reports',
-                lable: 'Phiếu khám',
-            },
-        ],
-    },
+    // {
+    //     key: 'treatment',
+    //     title: 'Khám bệnh',
+    //     icon: React.createElement(BriefcaseMedical),
+    //     childrens: [
+    //         {
+    //             key: 'appointments',
+    //             lable: 'Đặt lịch',
+    //         },
+    //         {
+    //             key: 'reports',
+    //             lable: 'Phiếu khám',
+    //         },
+    //     ],
+    // },
     {
         key: 'blog',
         title: 'Blog',
@@ -65,10 +65,10 @@ export const sidebarAdminData: IndividualMenuItemType[] = [
         title: 'Thông báo',
         icon: React.createElement(Bell),
         childrens: [
-            {
-                key: 'system-notification',
-                lable: 'Hệ thống',
-            },
+            // {
+            //     key: 'system-notification',
+            //     lable: 'Hệ thống',
+            // },
             {
                 key: 'contacts',
                 lable: 'Liên hệ',

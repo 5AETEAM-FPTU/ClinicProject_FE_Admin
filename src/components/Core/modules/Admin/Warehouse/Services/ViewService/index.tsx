@@ -124,7 +124,7 @@ export default function ViewService({ open, setOpen, refetch }: TProps) {
                             Đơn giá dịch vụ:
                         </p>
                         <p className="text-[16px] font-normal">
-                            {service?.price}:
+                            {service?.price}
                         </p>
                     </div>
                     <div>
@@ -132,7 +132,7 @@ export default function ViewService({ open, setOpen, refetch }: TProps) {
                             Nhóm dịch vụ:
                         </p>
                         <p className="text-[16px] font-normal">
-                            {service?.group}:
+                            {service?.group}
                         </p>
                     </div>
                     <div>
@@ -140,7 +140,7 @@ export default function ViewService({ open, setOpen, refetch }: TProps) {
                             Mô tả dịch vụ:
                         </p>
                         <p className="text-[16px] font-normal">
-                            {service?.description}:
+                            {service?.description}
                         </p>
                     </div>
                 </div>

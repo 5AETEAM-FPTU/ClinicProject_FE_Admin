@@ -15,7 +15,7 @@ const AppointmentChart = ({ appointmentMonthly }: { appointmentMonthly: any }) =
         labels: labels,
         datasets: [
             {
-                label: 'Lượt khám trong 12 tháng gần đây (lượt)',
+                label: 'Lượt khám trong 12 tháng của năm (lượt)',
                 data: dataValues,
                 backgroundColor: '#0285c780',
                 borderColor: '#0285c7',

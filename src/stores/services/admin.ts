@@ -29,9 +29,9 @@ export const adminApis = baseApi.injectEndpoints({
             }),
             extraOptions: { skipAuth: false }
         }),
-        getStaticInformation: build.query<any, void>({
-            query: () => ({
-                url: adminEndpoint.GET_STATIC_INFORMATION,
+        getStaticInformation: build.query<any, { year: number }>({
+            query: (query) => ({
+                url: adminEndpoint.GET_STATIC_INFORMATION + `?year=${query.year}`,
                 flashError: true,
                 method: 'GET',
             }),

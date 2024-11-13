@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import AppointmentChart from "./AppointmentChart";
 import { PureIncrement } from 'pure_counter';
 import { motion } from "framer-motion";
-import { Skeleton } from "antd";
+import { Select, Skeleton } from "antd";
 
 function formatNumber(num: number) {
     if (num < 10_000_000 && num > 1_000_000) {
@@ -39,13 +39,17 @@ function LoadingSkeleton() {
 }
 
 export default function AdminOverView() {
-    const { data: infoResult, refetch, isFetching } = useGetStaticInformationQuery();
+    const [year, setYear] = useState(new Date().getFullYear());
+    const { data: infoResult, refetch, isFetching } = useGetStaticInformationQuery({ year: year });
     const [info, setInfo] = useState<any>(null);
     useEffect(() => {
         if (infoResult) {
             setInfo(infoResult.body);
         }
     }, [infoResult]);
+    useEffect(() => {
+        refetch();
+    }, [year]);
     if (isFetching) return <LoadingSkeleton />
     return (
         <motion.div
@@ -84,7 +88,22 @@ export default function AdminOverView() {
                     </div>
                 </div>
             </div>
-            <h1 className="mb-2 mt-2 xl:text-[20px] text-lg font-bold text-secondarySupperDarker">Tổng quan</h1>
+            <div className="flex justify-between mt-4">
+                <h1 className="mb-2 mt-2 xl:text-[20px] text-lg font-bold text-secondarySupperDarker">Tổng quan</h1>
+                <Select
+                    defaultValue={new Date().getFullYear()}
+                    value={year}
+                    style={{ width: 120 }}
+                    onChange={(value) => setYear(value)}
+                    options={[
+                        { value: new Date().getFullYear(), label: new Date().getFullYear() },
+                        { value: new Date().getFullYear() - 1, label: new Date().getFullYear() - 1 },
+                        { value: new Date().getFullYear() - 2, label: new Date().getFullYear() - 2 },
+                        { value: new Date().getFullYear() - 3, label: new Date().getFullYear() - 3 },
+                    ]}
+                />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="flex flex-col justify-between rounded-2xl bg-white shadow-third">
                     <p className="m-0 px-[20px] mt-2 text-[36px] font-bold text-secondarySupperDarker">
@@ -126,7 +145,7 @@ export default function AdminOverView() {
             </div>
             <div className="flex flex-col justify-between rounded-2xl bg-white shadow-third mt-6">
                 <p className="m-0 px-[20px] mt-2 text-[36px] font-bold text-secondarySupperDarker">
-                    Doanh thu trong năm nay (VNĐ)
+                    Doanh thu trong năm {year} (VNĐ)
                 </p>
                 <p className="m-0 p-0 text-center text-[80px] font-semibold text-[#003553]">
                     {info && <PureIncrement start={0} end={formatNumber(info.revenueInCurrentYear / 100)} duration={1} />}

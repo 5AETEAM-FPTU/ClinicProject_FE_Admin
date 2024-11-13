@@ -17,7 +17,7 @@ export default function PostList() {
     const dispatch = useAppDispatch();
     const [searchText, setSearchText] = useState('');
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(1);
+    const [limit, setLimit] = useState(5);
     const router = useRouter();
     const { data: postResult, isFetching, refetch } = useGetAllPostsQuery({ page, limit, search: searchText });
     const [deletePostResult] = useDeletePostMutation();
